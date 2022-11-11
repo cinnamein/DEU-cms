@@ -12,14 +12,14 @@ public class Lab {
 
     public void beforeLab() {
         // 강의실 선택 페이지로 이동
-        //S_SelectClassPage select = new S_SelectClassPage();
-        //select.setVisible(true);
+        ClassSearchPage c_search = new ClassSearchPage();
+        c_search.setVisible(true);
 
     }
 
     public void afterLab() {
         // 예약한 실습실 좌석 배치도 페이지로 이동
-        //Seat seat = new Seat();
-        //seat.concreteSeat();
+        SeatSearchPage s_search = new SeatSearchPage();
+        s_search.setVisible(true);
     }
 }
