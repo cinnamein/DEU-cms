@@ -58,14 +58,14 @@ public class LoginPage extends javax.swing.JFrame {
                         final_id = id_list.get(index);
                         final_pw = pw_list.get(index);
 
-                       // S_Page student = new S_Page();
+                        //S_Page student = new S_Page();
                         //student.setVisible(true);
                     } else if (check == 80) {
                         final_id = id_list.get(index);
                         final_pw = pw_list.get(index);
 
-                       // DeleteInform delete = new DeleteInform();
-                       // delete.setVisible(true);
+                        DeleteInformPage delete = new DeleteInformPage();
+                        delete.setVisible(true);
                     } else if (check == 65) {
                         final_id = id_list.get(index);
                         final_pw = pw_list.get(index);
@@ -219,8 +219,8 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare('M');
                 if (check) {
                     System.out.println("마스터 조교 로그인 성공");
-                   // CreateToken token = new CreateToken();
-                    //token.setVisible(true);
+                    CreateTokenPage token = new CreateTokenPage();
+                    token.setVisible(true);
                     break;
                 } else {
                     break;
