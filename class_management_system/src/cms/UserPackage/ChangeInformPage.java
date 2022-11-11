@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+작성자 : 이혜리
+기능 : 회원 정보 수정
  */
 package cms.UserPackage;
 
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  *
- * @author lhl63
+ * @author 이혜리
  */
 public class ChangeInformPage extends javax.swing.JFrame {
 
