@@ -4,6 +4,13 @@
  */
 package cms.UserPackage;
 
+import cms.ConnectDB.ConnectDB;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 이혜리
@@ -15,6 +22,90 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
+    }
+
+    static String final_id = null;
+    static String final_pw = null;
+
+    private boolean LoginCompare(int check) {
+        ConnectDB db = new ConnectDB();
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            conn = db.getConnection();
+            st = conn.createStatement();
+            rs = st.executeQuery("select id,pw from client");
+
+            ArrayList<String> id_list = new ArrayList<String>();
+            ArrayList<String> pw_list = new ArrayList<String>();
+
+            while (rs.next()) {
+                id_list.add(rs.getString("id"));
+                pw_list.add(rs.getString("pw"));
+            }
+
+            int ch = 0;
+            int index = 0;
+
+            for (int i = 0; i < id_list.size(); i++) {
+                if (id_input.getText().equals(id_list.get(i)) && pw_input.getText().equals(pw_list.get(i))) {
+                    JOptionPane.showMessageDialog(null, "로그인 성공");
+                    index = i;
+                    ch = -1;
+                    if (check == 83) {
+                        final_id = id_list.get(index);
+                        final_pw = pw_list.get(index);
+
+                       // S_Page student = new S_Page();
+                        //student.setVisible(true);
+                    } else if (check == 80) {
+                        final_id = id_list.get(index);
+                        final_pw = pw_list.get(index);
+
+                       // DeleteInform delete = new DeleteInform();
+                       // delete.setVisible(true);
+                    } else if (check == 65) {
+                        final_id = id_list.get(index);
+                        final_pw = pw_list.get(index);
+                    } else if (check == 77) {
+                        final_id = id_list.get(index);
+                        final_pw = pw_list.get(index);
+                    }
+                    return true;
+                }
+            }
+
+            if (ch == 0) {
+                JOptionPane.showMessageDialog(null, "잘못된 입력입니다. 다시 로그인해 주세요.");
+                id_input.setText(null);
+                pw_input.setText(null);
+            }
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    private String ID = null;
+    private String PW = null;
+
+    public String getID() {
+        return final_id;
+    }
+
+    public void setID(String ID) {
+        this.ID = final_id;
+    }
+
+    public String getPW() {
+        return final_pw;
+    }
+
+    public void setPW(String PW) {
+        this.PW = final_pw;
     }
 
     /**
@@ -91,7 +182,7 @@ public class LoginPage extends javax.swing.JFrame {
         /*
         int number = jTable1.getSelectedRow();
         lecture_num = jTable1.getValueAt(number, 0).toString();
-        */
+         */
     }//GEN-LAST:event_loginMouseClicked
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
@@ -101,39 +192,39 @@ public class LoginPage extends javax.swing.JFrame {
 
         switch (first) { // 추후 사용자별로 페이지 연결하기
             case 83:
-           // check = LoginCompare('S');
-            if (check) {
-                System.out.println("학생 로그인 성공");
-                break;
-            } else {
-                break;
-            }
+                check = LoginCompare('S');
+                if (check) {
+                    System.out.println("학생 로그인 성공");
+                    break;
+                } else {
+                    break;
+                }
             case 80:
-          //  check = LoginCompare('P');
-            if (check) {
-                System.out.println("교수 로그인 성공");
-                break;
-            } else {
-                break;
-            }
+                check = LoginCompare('P');
+                if (check) {
+                    System.out.println("교수 로그인 성공");
+                    break;
+                } else {
+                    break;
+                }
             case 65:
-           // check = LoginCompare('A');
-            if (check) {
-                System.out.println("조교 로그인 성공");
-                break;
-            } else {
-                break;
-            }
+                check = LoginCompare('A');
+                if (check) {
+                    System.out.println("조교 로그인 성공");
+                    break;
+                } else {
+                    break;
+                }
             case 77:
-          //  check = LoginCompare('M');
-            if (check) {
-                System.out.println("마스터 조교 로그인 성공");
-             //   CreateToken token = new CreateToken();
-              //  token.setVisible(true);
-                break;
-            } else {
-                break;
-            }
+                check = LoginCompare('M');
+                if (check) {
+                    System.out.println("마스터 조교 로그인 성공");
+                   // CreateToken token = new CreateToken();
+                    //token.setVisible(true);
+                    break;
+                } else {
+                    break;
+                }
         }
     }//GEN-LAST:event_loginActionPerformed
 
