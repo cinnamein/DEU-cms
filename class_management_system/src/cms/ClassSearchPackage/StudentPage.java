@@ -59,8 +59,7 @@ public class StudentPage extends javax.swing.JFrame {
 
     private void searchClass_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchClass_buttonActionPerformed
         // TODO add your handling code here:
-        /*
-        Inquiry inquiry = new Inquiry();
+        InVoker inquiry = new InVoker();
         Lab labReceiver = new Lab();
         BeforeLab beforelab = new BeforeLab(labReceiver);
         AfterLab afterlab = new AfterLab(labReceiver);
@@ -71,7 +70,6 @@ public class StudentPage extends javax.swing.JFrame {
         inquiry.beforeLab();
         inquiry.afterLab();
         inquiry.concreteSeat();
-        */
     }//GEN-LAST:event_searchClass_buttonActionPerformed
 
     /**
