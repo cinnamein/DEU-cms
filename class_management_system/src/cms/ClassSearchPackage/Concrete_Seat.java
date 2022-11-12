@@ -16,12 +16,12 @@ import javax.swing.JButton;
  *
  * @author 이혜리
  */
-public class ConcreteSeat implements Command {
+public class Concrete_Seat implements Command {
 
-    private final Lab labReceiver;
+    private final Seat seatReceiver;
 
-    public ConcreteSeat(Lab labReceiver) {
-        this.labReceiver = labReceiver;
+    public Concrete_Seat(Seat seatReceiver) {
+        this.seatReceiver = seatReceiver;
     }
 
     @Override
@@ -30,6 +30,7 @@ public class ConcreteSeat implements Command {
         // 2. 일치하면 좌석 확인 및 조회
 
         ClassSearchPage c_search = new ClassSearchPage();
+        
         ConnectDB db = new ConnectDB();
         Connection conn = null;
         Statement st = null;
@@ -47,14 +48,10 @@ public class ConcreteSeat implements Command {
                 seat_list.add(rs.getString("seat_num"));
             }
 
-            String btn[] = {SeatSearchPage.btn1.getText(), SeatSearchPage.btn2.getText(), SeatSearchPage.btn3.getText(), SeatSearchPage.btn4.getText(), SeatSearchPage.btn5.getText(),
-                SeatSearchPage.btn6.getText(), SeatSearchPage.btn7.getText(), SeatSearchPage.btn8.getText(), SeatSearchPage.btn9.getText(), SeatSearchPage.btn10.getText(),
-                SeatSearchPage.btn11.getText(), SeatSearchPage.btn12.getText(), SeatSearchPage.btn13.getText(), SeatSearchPage.btn14.getText(), SeatSearchPage.btn15.getText(),
-                SeatSearchPage.btn16.getText(), SeatSearchPage.btn17.getText(), SeatSearchPage.btn18.getText(), SeatSearchPage.btn19.getText(), SeatSearchPage.btn20.getText(),
-                SeatSearchPage.btn21.getText(), SeatSearchPage.btn22.getText(), SeatSearchPage.btn23.getText(), SeatSearchPage.btn24.getText(), SeatSearchPage.btn25.getText(),
-                SeatSearchPage.btn26.getText(), SeatSearchPage.btn27.getText(), SeatSearchPage.btn28.getText(), SeatSearchPage.btn29.getText(), SeatSearchPage.btn30.getText(),
-                SeatSearchPage.btn31.getText(), SeatSearchPage.btn32.getText(), SeatSearchPage.btn33.getText(), SeatSearchPage.btn34.getText(), SeatSearchPage.btn35.getText(),
-                SeatSearchPage.btn36.getText(), SeatSearchPage.btn37.getText(), SeatSearchPage.btn38.getText(), SeatSearchPage.btn39.getText(), SeatSearchPage.btn40.getText()};
+            String btn[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
+                "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
 
             JButton b[] = {SeatSearchPage.btn1, SeatSearchPage.btn2, SeatSearchPage.btn3, SeatSearchPage.btn4, SeatSearchPage.btn5,
                 SeatSearchPage.btn6, SeatSearchPage.btn7, SeatSearchPage.btn8, SeatSearchPage.btn9, SeatSearchPage.btn10,

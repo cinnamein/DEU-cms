@@ -124,8 +124,9 @@ public class ClassSearchPage extends javax.swing.JFrame {
 
     private void class911_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_class911_buttonActionPerformed
         // TODO add your handling code here:
-        ClassSearchPage search = new ClassSearchPage();
-        search.setVisible(true);
+        SeatSearchPage s_search = new SeatSearchPage();
+        s_search.action();
+        s_search.setVisible(true);
     }//GEN-LAST:event_class911_buttonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

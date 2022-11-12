@@ -10,25 +10,17 @@ package cms.ClassSearchPackage;
  */
 public class InVoker {
 
-    Command beforeLab;
-    Command afterLab;
-    Command concreteSeat;
+    Command theCommand;
 
-    public void setCommand(Command beforeLab, Command afterLab, Command concreteSeat) {
-        this.beforeLab = beforeLab;
-        this.afterLab = afterLab;
-        this.concreteSeat = concreteSeat;
+    public InVoker(Command theCommand) {
+        setCommand(theCommand);
     }
 
-    public void beforeLab() {
-        this.beforeLab.exectue();
+    public void setCommand(Command newCommand) {
+        this.theCommand = newCommand;
     }
 
-    public void afterLab() {
-        this.afterLab.exectue();
-    }
-
-    public void concreteSeat() {
-        this.concreteSeat.exectue();
+    public void pressed() {
+        theCommand.exectue();
     }
 }

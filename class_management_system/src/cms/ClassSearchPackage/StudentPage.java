@@ -4,6 +4,13 @@
  */
 package cms.ClassSearchPackage;
 
+import cms.ConnectDB.ConnectDB;
+import cms.UserPackage.LoginPage;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 /**
  *
  * @author 이혜리
@@ -59,17 +66,58 @@ public class StudentPage extends javax.swing.JFrame {
 
     private void searchClass_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchClass_buttonActionPerformed
         // TODO add your handling code here:
-        InVoker inquiry = new InVoker();
-        Lab labReceiver = new Lab();
-        BeforeLab beforelab = new BeforeLab(labReceiver);
-        AfterLab afterlab = new AfterLab(labReceiver);
-        ConcreteSeat concreteseeat = new ConcreteSeat(labReceiver);
+         BeforeLab beforelabReceiver = new BeforeLab();
+        AfterLab afterlabReceiver = new AfterLab();
+        Seat seatReceiver = new Seat();
 
-        inquiry.setCommand(beforelab, afterlab, concreteseeat);
+        Concrete_BeforeLab beforelab = new Concrete_BeforeLab(beforelabReceiver);
+        Concrete_AfterLab afterlab = new Concrete_AfterLab(afterlabReceiver);
+        Concrete_Seat concreteseat = new Concrete_Seat(seatReceiver);
 
-        inquiry.beforeLab();
-        inquiry.afterLab();
-        inquiry.concreteSeat();
+        LoginPage lg = new LoginPage();
+
+        ConnectDB db = new ConnectDB();
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            conn = db.getConnection();
+            st = conn.createStatement();
+            rs = st.executeQuery("select id, class_num, approve from reservation");
+
+            ArrayList<String> id_list = new ArrayList<String>();
+            ArrayList<String> class_list = new ArrayList<String>();
+            ArrayList<String> a_list = new ArrayList<String>();
+
+            while (rs.next()) {
+                id_list.add(rs.getString("id"));
+                class_list.add(rs.getString("class_num"));
+                a_list.add(rs.getString("approve"));
+            }
+
+            int ch = 0;
+            int index = 0;    // 예약 여부를 저장하기 위함
+
+            for (int i = 0; i < id_list.size(); i++) {
+                if (lg.getID().equals(id_list.get(i))) {
+
+                    if (a_list.get(i).equals("0")) {
+                        InVoker button1 = new InVoker(beforelab);
+                        button1.pressed();
+
+                    } else if (a_list.get(i).equals("1")) {
+                        InVoker button2 = new InVoker(afterlab);
+                        button2.pressed();
+                        InVoker button3 = new InVoker(concreteseat);
+                        button3.pressed();
+                    } 
+                }
+            }
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_searchClass_buttonActionPerformed
 
     /**
