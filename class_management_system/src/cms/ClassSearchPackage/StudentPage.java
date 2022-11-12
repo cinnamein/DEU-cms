@@ -66,7 +66,7 @@ public class StudentPage extends javax.swing.JFrame {
 
     private void searchClass_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchClass_buttonActionPerformed
         // TODO add your handling code here:
-         BeforeLab beforelabReceiver = new BeforeLab();
+        BeforeLab beforelabReceiver = new BeforeLab();
         AfterLab afterlabReceiver = new AfterLab();
         Seat seatReceiver = new Seat();
 
@@ -111,7 +111,7 @@ public class StudentPage extends javax.swing.JFrame {
                         button2.pressed();
                         InVoker button3 = new InVoker(concreteseat);
                         button3.pressed();
-                    } 
+                    }
                 }
             }
             conn.close();
