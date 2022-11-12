@@ -4,6 +4,7 @@
  */
 package cms.UserPackage;
 
+import cms.ClassSearchPackage.StudentPage;
 import cms.ConnectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -58,8 +59,8 @@ public class LoginPage extends javax.swing.JFrame {
                         final_id = id_list.get(index);
                         final_pw = pw_list.get(index);
 
-                        //S_Page student = new S_Page();
-                        //student.setVisible(true);
+                        StudentPage student = new StudentPage();
+                        student.setVisible(true);
                     } else if (check == 80) {
                         final_id = id_list.get(index);
                         final_pw = pw_list.get(index);
