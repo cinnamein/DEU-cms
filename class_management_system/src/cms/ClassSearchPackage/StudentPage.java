@@ -34,6 +34,7 @@ public class StudentPage extends javax.swing.JFrame {
     private void initComponents() {
 
         searchClass_button = new javax.swing.JButton();
+        searchTime_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,13 +45,22 @@ public class StudentPage extends javax.swing.JFrame {
             }
         });
 
+        searchTime_button.setText("시간표 조회");
+        searchTime_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTime_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(136, 136, 136)
-                .addComponent(searchClass_button)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchClass_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchTime_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(167, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -58,7 +68,9 @@ public class StudentPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(searchClass_button)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(searchTime_button)
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         pack();
@@ -120,6 +132,16 @@ public class StudentPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchClass_buttonActionPerformed
 
+    private void searchTime_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTime_buttonActionPerformed
+        // TODO add your handling code here:
+        TimeTable timeReceiver = new TimeTable();
+
+        Concrete_TimeTable timetable = new Concrete_TimeTable(timeReceiver);
+
+        InVoker button4 = new InVoker(timetable);
+        button4.pressed();
+    }//GEN-LAST:event_searchTime_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -157,5 +179,6 @@ public class StudentPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton searchClass_button;
+    private javax.swing.JButton searchTime_button;
     // End of variables declaration//GEN-END:variables
 }
