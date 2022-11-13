@@ -38,6 +38,9 @@ public class TimeTablePage extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         time_table = new javax.swing.JTable();
         t911_button = new javax.swing.JButton();
+        t918_button = new javax.swing.JButton();
+        t916_button = new javax.swing.JButton();
+        t915_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,10 +54,31 @@ public class TimeTablePage extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(time_table);
 
-        t911_button.setText("911 조회");
+        t911_button.setText("911 시간표 조회");
         t911_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t911_buttonActionPerformed(evt);
+            }
+        });
+
+        t918_button.setText("918 시간표 조회");
+        t918_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t918_buttonActionPerformed(evt);
+            }
+        });
+
+        t916_button.setText("916 시간표 조회");
+        t916_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t916_buttonActionPerformed(evt);
+            }
+        });
+
+        t915_button.setText("915 시간표 조회");
+        t915_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t915_buttonActionPerformed(evt);
             }
         });
 
@@ -65,24 +89,37 @@ public class TimeTablePage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(t911_button)
-                .addGap(63, 63, 63))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(t911_button)
+                    .addComponent(t918_button)
+                    .addComponent(t916_button)
+                    .addComponent(t915_button))
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(74, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(t911_button)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(t915_button)
+                .addGap(18, 18, 18)
+                .addComponent(t916_button)
+                .addGap(18, 18, 18)
+                .addComponent(t918_button)
+                .addGap(18, 18, 18)
+                .addComponent(t911_button)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-  
+   
     int check = 0; // 시간표 조회 횟수를 1회로 제한
+    
     private void t911_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t911_buttonActionPerformed
         // TODO add your handling code here:
 
@@ -145,6 +182,189 @@ public class TimeTablePage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_t911_buttonActionPerformed
 
+    private void t918_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t918_buttonActionPerformed
+        // TODO add your handling code here:
+        if (check != -1) {
+            DefaultTableModel model = (DefaultTableModel) time_table.getModel();
+
+            ClassSearchPage c_search = new ClassSearchPage();
+
+            ConnectDB db = new ConnectDB();
+            Connection conn = null;
+            Statement st = null;
+            ResultSet rs = null;
+            try {
+                conn = db.getConnection();
+                st = conn.createStatement();
+
+                rs = st.executeQuery(("select * from schedule where class_num='918'"));
+                ArrayList lnum_list = new ArrayList<String>();
+                ArrayList profnum_list = new ArrayList<String>();
+                ArrayList lname_list = new ArrayList<String>();
+                ArrayList starttime_list = new ArrayList<String>();
+                ArrayList endtime_list = new ArrayList<String>();
+                ArrayList day_list = new ArrayList<String>();
+                ArrayList date_list = new ArrayList<String>();
+
+                while (rs.next()) {
+                    lnum_list.add(rs.getString("lecture_num"));
+                    profnum_list.add(rs.getString("prof_num"));
+                    lname_list.add(rs.getString("lecture_name"));
+                    starttime_list.add(rs.getString("l_starttime"));
+                    endtime_list.add(rs.getString("l_endtime"));
+                    day_list.add(rs.getString("l_day"));
+                    date_list.add(rs.getString("l_date"));
+                }
+
+                Object[] tableline = lnum_list.toArray();
+
+                for (int i = 0; i < tableline.length; i++) {
+
+                    ArrayList arr = new ArrayList<>();
+
+                    arr.add(lnum_list.get(i));
+                    arr.add(profnum_list.get(i));
+                    arr.add(lname_list.get(i));
+                    arr.add(starttime_list.get(i));
+                    arr.add(endtime_list.get(i));
+                    arr.add(day_list.get(i));
+                    arr.add(date_list.get(i));
+
+                    model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2), arr.get(3), arr.get(4), arr.get(5), arr.get(6)});
+                }
+                check = -1;
+
+                conn.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "시간표 조회는 1회만 가능합니다.");
+        }
+    }//GEN-LAST:event_t918_buttonActionPerformed
+
+    private void t916_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t916_buttonActionPerformed
+        // TODO add your handling code here:
+        if (check != -1) {
+            DefaultTableModel model = (DefaultTableModel) time_table.getModel();
+
+            ClassSearchPage c_search = new ClassSearchPage();
+
+            ConnectDB db = new ConnectDB();
+            Connection conn = null;
+            Statement st = null;
+            ResultSet rs = null;
+            try {
+                conn = db.getConnection();
+                st = conn.createStatement();
+
+                rs = st.executeQuery(("select * from schedule where class_num='916'"));
+                ArrayList lnum_list = new ArrayList<String>();
+                ArrayList profnum_list = new ArrayList<String>();
+                ArrayList lname_list = new ArrayList<String>();
+                ArrayList starttime_list = new ArrayList<String>();
+                ArrayList endtime_list = new ArrayList<String>();
+                ArrayList day_list = new ArrayList<String>();
+                ArrayList date_list = new ArrayList<String>();
+
+                while (rs.next()) {
+                    lnum_list.add(rs.getString("lecture_num"));
+                    profnum_list.add(rs.getString("prof_num"));
+                    lname_list.add(rs.getString("lecture_name"));
+                    starttime_list.add(rs.getString("l_starttime"));
+                    endtime_list.add(rs.getString("l_endtime"));
+                    day_list.add(rs.getString("l_day"));
+                    date_list.add(rs.getString("l_date"));
+                }
+
+                Object[] tableline = lnum_list.toArray();
+
+                for (int i = 0; i < tableline.length; i++) {
+
+                    ArrayList arr = new ArrayList<>();
+
+                    arr.add(lnum_list.get(i));
+                    arr.add(profnum_list.get(i));
+                    arr.add(lname_list.get(i));
+                    arr.add(starttime_list.get(i));
+                    arr.add(endtime_list.get(i));
+                    arr.add(day_list.get(i));
+                    arr.add(date_list.get(i));
+
+                    model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2), arr.get(3), arr.get(4), arr.get(5), arr.get(6)});
+                }
+                check = -1;
+
+                conn.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "시간표 조회는 1회만 가능합니다.");
+        }
+    }//GEN-LAST:event_t916_buttonActionPerformed
+
+    private void t915_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t915_buttonActionPerformed
+        // TODO add your handling code here:
+        if (check != -1) {
+            DefaultTableModel model = (DefaultTableModel) time_table.getModel();
+
+            ClassSearchPage c_search = new ClassSearchPage();
+
+            ConnectDB db = new ConnectDB();
+            Connection conn = null;
+            Statement st = null;
+            ResultSet rs = null;
+            try {
+                conn = db.getConnection();
+                st = conn.createStatement();
+
+                rs = st.executeQuery(("select * from schedule where class_num='915'"));
+                ArrayList lnum_list = new ArrayList<String>();
+                ArrayList profnum_list = new ArrayList<String>();
+                ArrayList lname_list = new ArrayList<String>();
+                ArrayList starttime_list = new ArrayList<String>();
+                ArrayList endtime_list = new ArrayList<String>();
+                ArrayList day_list = new ArrayList<String>();
+                ArrayList date_list = new ArrayList<String>();
+
+                while (rs.next()) {
+                    lnum_list.add(rs.getString("lecture_num"));
+                    profnum_list.add(rs.getString("prof_num"));
+                    lname_list.add(rs.getString("lecture_name"));
+                    starttime_list.add(rs.getString("l_starttime"));
+                    endtime_list.add(rs.getString("l_endtime"));
+                    day_list.add(rs.getString("l_day"));
+                    date_list.add(rs.getString("l_date"));
+                }
+
+                Object[] tableline = lnum_list.toArray();
+
+                for (int i = 0; i < tableline.length; i++) {
+
+                    ArrayList arr = new ArrayList<>();
+
+                    arr.add(lnum_list.get(i));
+                    arr.add(profnum_list.get(i));
+                    arr.add(lname_list.get(i));
+                    arr.add(starttime_list.get(i));
+                    arr.add(endtime_list.get(i));
+                    arr.add(day_list.get(i));
+                    arr.add(date_list.get(i));
+
+                    model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2), arr.get(3), arr.get(4), arr.get(5), arr.get(6)});
+                }
+                check = -1;
+
+                conn.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "시간표 조회는 1회만 가능합니다.");
+        }
+    }//GEN-LAST:event_t915_buttonActionPerformed
+ 
     /**
      * @param args the command line arguments
      */
@@ -183,6 +403,9 @@ public class TimeTablePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton t911_button;
+    private javax.swing.JButton t915_button;
+    private javax.swing.JButton t916_button;
+    private javax.swing.JButton t918_button;
     public static javax.swing.JTable time_table;
     // End of variables declaration//GEN-END:variables
 }

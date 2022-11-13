@@ -26,9 +26,14 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="735" max="-2" attributes="0"/>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
-              <Component id="t911_button" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="t911_button" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="t918_button" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="t916_button" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="t915_button" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -36,11 +41,19 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="74" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="t911_button" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="352" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jScrollPane1" min="-2" pref="352" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+              <Component id="t915_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="t916_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="t918_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="t911_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,10 +91,34 @@
     </Container>
     <Component class="javax.swing.JButton" name="t911_button">
       <Properties>
-        <Property name="text" type="java.lang.String" value="911 &#xc870;&#xd68c;"/>
+        <Property name="text" type="java.lang.String" value="911 &#xc2dc;&#xac04;&#xd45c; &#xc870;&#xd68c;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="t911_buttonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="t918_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="918 &#xc2dc;&#xac04;&#xd45c; &#xc870;&#xd68c;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="t918_buttonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="t916_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="916 &#xc2dc;&#xac04;&#xd45c; &#xc870;&#xd68c;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="t916_buttonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="t915_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="915 &#xc2dc;&#xac04;&#xd45c; &#xc870;&#xd68c;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="t915_buttonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
