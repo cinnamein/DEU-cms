@@ -6,6 +6,7 @@ package cms.UserPackage;
 
 import cms.ClassSearchPackage.StudentPage;
 import cms.ConnectDB.ConnectDB;
+import cms.ResAssistant.PageAss;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -70,9 +71,15 @@ public class LoginPage extends javax.swing.JFrame {
                     } else if (check == 65) {
                         final_id = id_list.get(index);
                         final_pw = pw_list.get(index);
+
+                        PageAss ass = new PageAss();
+                        ass.setVisible(true);
                     } else if (check == 77) {
                         final_id = id_list.get(index);
                         final_pw = pw_list.get(index);
+
+                        CreateTokenPage token = new CreateTokenPage();
+                        token.setVisible(true);
                     }
                     return true;
                 }
@@ -220,8 +227,6 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare('M');
                 if (check) {
                     System.out.println("마스터 조교 로그인 성공");
-                    CreateTokenPage token = new CreateTokenPage();
-                    token.setVisible(true);
                     break;
                 } else {
                     break;
