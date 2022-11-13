@@ -26,54 +26,6 @@ public class SeatSearchPage extends javax.swing.JFrame {
         initComponents();
     }
 
-       public void action() {
-        ClassSearchPage c_search = new ClassSearchPage();
-
-        ConnectDB db = new ConnectDB();
-        Connection conn = null;
-        Statement st = null;
-        ResultSet rs = null;
-
-        try {
-            conn = db.getConnection();
-            st = conn.createStatement();
-
-            rs = st.executeQuery(("select seat_num from reservation where class_num='" + c_search.getC_911() + "'"));
-            ArrayList seat_list = new ArrayList<String>();
-
-            while (rs.next()) {
-                seat_list.add(rs.getString("seat_num"));
-            }
-
-            String btn[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-                "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
-                "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
-
-            JButton b[] = {SeatSearchPage.btn1, SeatSearchPage.btn2, SeatSearchPage.btn3, SeatSearchPage.btn4, SeatSearchPage.btn5,
-                SeatSearchPage.btn6, SeatSearchPage.btn7, SeatSearchPage.btn8, SeatSearchPage.btn9, SeatSearchPage.btn10,
-                SeatSearchPage.btn11, SeatSearchPage.btn12, SeatSearchPage.btn13, SeatSearchPage.btn14, SeatSearchPage.btn15,
-                SeatSearchPage.btn16, SeatSearchPage.btn17, SeatSearchPage.btn18, SeatSearchPage.btn19, SeatSearchPage.btn20,
-                SeatSearchPage.btn21, SeatSearchPage.btn22, SeatSearchPage.btn23, SeatSearchPage.btn24, SeatSearchPage.btn25,
-                SeatSearchPage.btn26, SeatSearchPage.btn27, SeatSearchPage.btn28, SeatSearchPage.btn29, SeatSearchPage.btn30,
-                SeatSearchPage.btn31, SeatSearchPage.btn32, SeatSearchPage.btn33, SeatSearchPage.btn34, SeatSearchPage.btn35,
-                SeatSearchPage.btn36, SeatSearchPage.btn37, SeatSearchPage.btn38, SeatSearchPage.btn39, SeatSearchPage.btn40};
-
-            for (int i = 0; i < seat_list.size(); i++) {
-                for (int j = 0; j < btn.length; j++) {
-                    if (btn[j].equals(seat_list.get(i))) {
-                        System.out.println(btn[j]);
-                        b[j].setBackground(Color.gray);
-
-                    }
-                }
-            }
-
-            conn.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,6 +79,10 @@ public class SeatSearchPage extends javax.swing.JFrame {
         search_butoon = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         text1 = new javax.swing.JTextArea();
+        s911_button = new javax.swing.JButton();
+        s915_button = new javax.swing.JButton();
+        s916_button = new javax.swing.JButton();
+        s918_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -254,14 +210,56 @@ public class SeatSearchPage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(text1);
 
+        s911_button.setText("911 좌석조회");
+        s911_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s911_buttonActionPerformed(evt);
+            }
+        });
+
+        s915_button.setText("915 좌석조회");
+        s915_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s915_buttonActionPerformed(evt);
+            }
+        });
+
+        s916_button.setText("916 좌석조회");
+        s916_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s916_buttonActionPerformed(evt);
+            }
+        });
+
+        s918_button.setText("918 좌석조회");
+        s918_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s918_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(445, 445, 445)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(s915_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(s916_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(s918_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(s911_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn33, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,24 +346,27 @@ public class SeatSearchPage extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(search_butoon)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(414, 414, 414)
-                        .addComponent(jLabel1)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(68, 68, 68))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(s916_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s918_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s911_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s915_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(search_butoon)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +416,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                             .addComponent(btn38, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn39, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn40, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -436,7 +437,6 @@ public class SeatSearchPage extends javax.swing.JFrame {
     private void search_butoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_butoonActionPerformed
         // TODO add your handling code here:
         // 예약 승인이 된 사람만 조회가 가능하도록 구현 (textArea에 출력되도록 수정 필요)
-        ClassSearchPage c_search = new ClassSearchPage();
 
         ConnectDB db = new ConnectDB();
         Connection conn = null;
@@ -449,7 +449,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
             conn = db.getConnection();
             st = conn.createStatement();
 
-            rs = st.executeQuery(("select * from reservation where class_num='" + c_search.getC_911() + "'"));
+            rs = st.executeQuery(("select * from reservation where id ='" + lg.getID() + "'"));
 
             ArrayList id_list = new ArrayList<String>();
             ArrayList seat_list = new ArrayList<String>();
@@ -468,15 +468,15 @@ public class SeatSearchPage extends javax.swing.JFrame {
             }
 
             for (int k = 0; k < id_list.size(); k++) {
-                if ((lg.getID().equals(id_list.get(k)))) {
-                    if ((approve_list.get(k).equals("1"))) {
-                        System.out.println("아이디 : "+id_list.get(k));
-                        System.out.println("예약 좌석 번호 : "+seat_list.get(k));
-                        System.out.println("시작 시간 : " +starttime_list.get(k));
-                        System.out.println("끝 시간 : " +endtime_list.get(k));
-                        System.out.println("관리자 여부 : " +admin_list.get(k));
-                    }
+                // if ((lg.getID().equals(id_list.get(k)))) {
+                if ((approve_list.get(k).equals("1"))) {
+                    System.out.println("아이디 : " + id_list.get(k));
+                    System.out.println("예약 좌석 번호 : " + seat_list.get(k));
+                    System.out.println("시작 시간 : " + starttime_list.get(k));
+                    System.out.println("끝 시간 : " + endtime_list.get(k));
+                    System.out.println("관리자 여부 : " + admin_list.get(k));
                 }
+                // }
             }
             conn.close();
         } catch (Exception ex) {
@@ -491,6 +491,213 @@ public class SeatSearchPage extends javax.swing.JFrame {
     private void text1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_text1InputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_text1InputMethodTextChanged
+
+    private void s911_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s911_buttonActionPerformed
+        // TODO add your handling code here:
+
+        ConnectDB db = new ConnectDB();
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+
+            conn = db.getConnection();
+            st = conn.createStatement();
+
+            rs = st.executeQuery(("select * from reservation where class_num='911'"));
+
+            ArrayList seat_list = new ArrayList<String>();
+
+            while (rs.next()) {
+                seat_list.add(rs.getString("seat_num"));
+            }
+
+            String btn[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
+                "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
+            
+            JButton b[] = {btn1, btn2, btn3, btn4, btn5,
+                btn6, btn7, btn8, btn9, btn10,
+                btn11, btn12, btn13, btn14, btn15,
+                btn16, btn17, btn18, btn19, btn20,
+                btn21, btn22, btn23, btn24, btn25,
+                btn26, btn27, btn28, btn27, btn28,
+                btn29, btn30, btn31, btn32, btn35,
+                btn36, btn37, btn38, btn39, btn40};
+
+            for (int i = 0; i < seat_list.size(); i++) {
+                for (int j = 0; j < btn.length; j++) {
+                    if (btn[j].equals(seat_list.get(i))) {
+                        System.out.println(btn[j]);
+                        b[j].setBackground(Color.yellow);
+                    }
+                }
+            }
+
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_s911_buttonActionPerformed
+
+    private void s915_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s915_buttonActionPerformed
+        // TODO add your handling code here:
+        ConnectDB db = new ConnectDB();
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+
+            conn = db.getConnection();
+            st = conn.createStatement();
+
+            rs = st.executeQuery(("select * from reservation where class_num='915'"));
+
+            ArrayList seat_list = new ArrayList<String>();
+
+            while (rs.next()) {
+                seat_list.add(rs.getString("seat_num"));
+            }
+
+            String btn[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
+                "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
+
+            /*
+            JButton b[] = {btn1, S_SeatSearchPage.btn2, S_SeatSearchPage.btn3, S_SeatSearchPage.btn4, S_SeatSearchPage.btn5,
+                SeatSearchPage.btn6, SeatSearchPage.btn7, S_SeatSearchPage.btn8, S_SeatSearchPage.btn9, S_SeatSearchPage.btn10,
+                SeatSearchPage.btn11, SeatSearchPage.btn12, S_SeatSearchPage.btn13, S_SeatSearchPage.btn14, S_SeatSearchPage.btn15,
+                SeatSearchPage.btn16, SeatSearchPage.btn17, S_SeatSearchPage.btn18, S_SeatSearchPage.btn19, S_SeatSearchPage.btn20,
+                SeatSearchPage.btn21, SeatSearchPage.btn22, S_SeatSearchPage.btn23, S_SeatSearchPage.btn24, S_SeatSearchPage.btn25,
+                SeatSearchPage.btn26, SeatSearchPage.btn27, S_SeatSearchPage.btn28, S_SeatSearchPage.btn27, S_SeatSearchPage.btn28,
+                SeatSearchPage.btn29, SeatSearchPage.btn30, S_SeatSearchPage.btn31, S_SeatSearchPage.btn32, S_SeatSearchPage.btn35,
+                SeatSearchPage.btn36, SeatSearchPage.btn37, S_SeatSearchPage.btn38, S_SeatSearchPage.btn39, S_SeatSearchPage.btn40};
+             */
+            JButton b[] = {btn1, btn2, btn3, btn4, btn5,
+                btn6, btn7, btn8, btn9, btn10,
+                btn11, btn12, btn13, btn14, btn15,
+                btn16, btn17, btn18, btn19, btn20,
+                btn21, btn22, btn23, btn24, btn25,
+                btn26, btn27, btn28, btn27, btn28,
+                btn29, btn30, btn31, btn32, btn35,
+                btn36, btn37, btn38, btn39, btn40};
+
+            for (int i = 0; i < seat_list.size(); i++) {
+                for (int j = 0; j < btn.length; j++) {
+                    if (btn[j].equals(seat_list.get(i))) {
+                        System.out.println(btn[j]);
+                        b[j].setBackground(Color.yellow);
+                    }
+                }
+            }
+
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_s915_buttonActionPerformed
+
+    private void s916_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s916_buttonActionPerformed
+        // TODO add your handling code here:
+        ConnectDB db = new ConnectDB();
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+
+            conn = db.getConnection();
+            st = conn.createStatement();
+
+            rs = st.executeQuery(("select * from reservation where class_num='916'"));
+
+            ArrayList seat_list = new ArrayList<String>();
+
+            while (rs.next()) {
+                seat_list.add(rs.getString("seat_num"));
+            }
+
+            String btn[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
+                "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
+
+            JButton b[] = {btn1, btn2, btn3, btn4, btn5,
+                btn6, btn7, btn8, btn9, btn10,
+                btn11, btn12, btn13, btn14, btn15,
+                btn16, btn17, btn18, btn19, btn20,
+                btn21, btn22, btn23, btn24, btn25,
+                btn26, btn27, btn28, btn27, btn28,
+                btn29, btn30, btn31, btn32, btn35,
+                btn36, btn37, btn38, btn39, btn40};
+
+            for (int i = 0; i < seat_list.size(); i++) {
+                for (int j = 0; j < btn.length; j++) {
+                    if (btn[j].equals(seat_list.get(i))) {
+                        System.out.println(btn[j]);
+                        b[j].setBackground(Color.yellow);
+                    }
+                }
+            }
+
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_s916_buttonActionPerformed
+
+    private void s918_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s918_buttonActionPerformed
+        // TODO add your handling code here:
+        ConnectDB db = new ConnectDB();
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+
+            conn = db.getConnection();
+            st = conn.createStatement();
+
+            rs = st.executeQuery(("select * from reservation where class_num='918'"));
+
+            ArrayList seat_list = new ArrayList<String>();
+
+            while (rs.next()) {
+                seat_list.add(rs.getString("seat_num"));
+            }
+
+            String btn[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
+                "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
+
+            JButton b[] = {btn1, btn2, btn3, btn4, btn5,
+                btn6, btn7, btn8, btn9, btn10,
+                btn11, btn12, btn13, btn14, btn15,
+                btn16, btn17, btn18, btn19, btn20,
+                btn21, btn22, btn23, btn24, btn25,
+                btn26, btn27, btn28, btn27, btn28,
+                btn29, btn30, btn31, btn32, btn35,
+                btn36, btn37, btn38, btn39, btn40};
+
+            for (int i = 0; i < seat_list.size(); i++) {
+                for (int j = 0; j < btn.length; j++) {
+                    if (btn[j].equals(seat_list.get(i))) {
+                        System.out.println(btn[j]);
+                        b[j].setBackground(Color.yellow);
+                    }
+                }
+            }
+
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_s918_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -570,6 +777,10 @@ public class SeatSearchPage extends javax.swing.JFrame {
     protected static javax.swing.JButton btn9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton s911_button;
+    private javax.swing.JButton s915_button;
+    private javax.swing.JButton s916_button;
+    private javax.swing.JButton s918_button;
     private javax.swing.JButton search_butoon;
     private javax.swing.JTextArea text1;
     // End of variables declaration//GEN-END:variables

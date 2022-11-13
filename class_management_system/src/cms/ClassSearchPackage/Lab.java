@@ -8,12 +8,11 @@ package cms.ClassSearchPackage;
  *
  * @author 이혜리
  */
-public class BeforeLab {
+public class Lab {
 
-    public void beforeLab() {
-        // 강의실 선택 페이지로 이동
-        ClassSearchPage select = new ClassSearchPage();
-        select.setVisible(true);
-
+    public void lab() {
+        // 예약한 실습실 좌석 배치도 페이지로 이동
+        SeatSearchPage seat = new SeatSearchPage();
+        seat.setVisible(true);
     }
 }

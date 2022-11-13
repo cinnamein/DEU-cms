@@ -126,8 +126,6 @@ public class TimeTablePage extends javax.swing.JFrame {
         if (check != -1) {
             DefaultTableModel model = (DefaultTableModel) time_table.getModel();
 
-            ClassSearchPage c_search = new ClassSearchPage();
-
             ConnectDB db = new ConnectDB();
             Connection conn = null;
             Statement st = null;
@@ -186,8 +184,6 @@ public class TimeTablePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (check != -1) {
             DefaultTableModel model = (DefaultTableModel) time_table.getModel();
-
-            ClassSearchPage c_search = new ClassSearchPage();
 
             ConnectDB db = new ConnectDB();
             Connection conn = null;
@@ -248,8 +244,6 @@ public class TimeTablePage extends javax.swing.JFrame {
         if (check != -1) {
             DefaultTableModel model = (DefaultTableModel) time_table.getModel();
 
-            ClassSearchPage c_search = new ClassSearchPage();
-
             ConnectDB db = new ConnectDB();
             Connection conn = null;
             Statement st = null;
@@ -308,8 +302,6 @@ public class TimeTablePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (check != -1) {
             DefaultTableModel model = (DefaultTableModel) time_table.getModel();
-
-            ClassSearchPage c_search = new ClassSearchPage();
 
             ConnectDB db = new ConnectDB();
             Connection conn = null;
