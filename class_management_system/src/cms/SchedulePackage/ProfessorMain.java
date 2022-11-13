@@ -3,7 +3,8 @@ package cms.SchedulePackage;
 import cms.UserPackage.LoginPage;
 
 /**
- 정수연
+ 작성자: 정수연
+ 기능: 교수 메인화면
  */
 public class ProfessorMain extends javax.swing.JFrame {
 

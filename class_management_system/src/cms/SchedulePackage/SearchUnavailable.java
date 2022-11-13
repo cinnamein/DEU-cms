@@ -12,21 +12,7 @@ import java.sql.ResultSet;
  */
 public class SearchUnavailable implements SearchState {
     @Override
-    public void search(){
-        ConnectDB db = new ConnectDB();  // DB 객체 생성
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        try {
-            conn = db.getConnection();
-            ps = conn.prepareStatement("");
-            rs = ps.executeQuery();
-            
-            
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            
-        }
+    public void search(){  // 실습실 상태 조회 불가능
+        System.out.println("실습실 상태 조회 불가능합니다");
     }
 }

@@ -1,8 +1,7 @@
 package cms.SchedulePackage;
 
 /**
- 작성자: 정수연
- 기능: 좌석 선택 창
+ * 작성자: 정수연 기능: 좌석 선택 창
  */
 public class CheckLab extends javax.swing.JFrame {
 
@@ -108,6 +107,7 @@ public class CheckLab extends javax.swing.JFrame {
         AssistantMain a = new AssistantMain();
         a.setVisible(true);
         dispose();
+        //this.toBack();
     }//GEN-LAST:event_UndoBtnActionPerformed
 
     private void Seat911ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat911ActionPerformed

@@ -1,26 +1,39 @@
-/*
-패턴 특징: 변하는 것과 변하지 않는 것을 분리해서 전략을 쉽게 바꿀 수 있도록 클래스별로
-행위를 캡슐화해 동적으로 행위를 자유롭게 바꿀 수 있다.
-변하는 것: 관리자(교수, 조교)에 따라 시간표를 입력 or 실습실 상태 조회 권한 등 사용하는 기능 달라짐
-변하지 않는 것: 관리자는 공통으로 시간표 입력 가능
-관리자에 따라 동적으로 행위를 바꿀 수 있다 판단
- */
 package cms.SchedulePackage;
 
+import cms.ConnectDB.ConnectDB;
+import java.sql.Connection;
+import java.sql.Date;  // 오라클 날짜타입과 연동 가능. 형식을 지켜야 함
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+//java.sql.Date s = new java.sql.Date(u.getTime());
+
 /**
- * 작성자: 정수연
+ * 작성자: 정수연 기능: 특강 및 세미나 등록
  */
 public class InputSemina extends javax.swing.JFrame {
 
-    /**
-     */
+    // String -> java.sql.Date로 변경
+    String grade_num;  //과목번호
+    int class_name;  //호실
+    String pro_name;  //교수명
+    String grade_name;  //과목명
+    String week_day;   //요일
+    //날짜(date)
+    String year1;  //년
+    String month1;   //월
+    String day1;   //일
+    //시, 분
+    String start_hour;    // 시작시간 - 시
+    String start_min;     // 시작시간 - 분
+    String end_hour;      // 종료시간 - 시
+    String end_min;       // 종료시간 - 분
+
     public InputSemina() {
         initComponents();
     }
 
-    /**
-  
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -38,10 +51,8 @@ public class InputSemina extends javax.swing.JFrame {
         year = new javax.swing.JComboBox<>();
         OkBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        startTime = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         month = new javax.swing.JComboBox<>();
-        endTime = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -49,6 +60,12 @@ public class InputSemina extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        s_hour = new javax.swing.JComboBox<>();
+        s_min = new javax.swing.JComboBox<>();
+        e_min = new javax.swing.JComboBox<>();
+        e_hour = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +124,18 @@ public class InputSemina extends javax.swing.JFrame {
 
         jLabel6.setText("시작시간");
 
+        s_hour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+
+        s_min.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "30" }));
+
+        e_min.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "30" }));
+
+        e_hour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+
+        jLabel13.setText(":");
+
+        jLabel14.setText(":");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,68 +145,77 @@ public class InputSemina extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(UndoBtn)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(OkBtn))
+                        .addComponent(s_hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel13)
+                        .addGap(7, 7, 7)
+                        .addComponent(s_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(30, 30, 30)
+                            .addComponent(classNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(69, 69, 69))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(gradeNum, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(25, 25, 25))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(39, 39, 39)
-                                .addComponent(startTime, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(30, 30, 30)
-                                    .addComponent(classNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(69, 69, 69))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(gradeNum, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(25, 25, 25))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(gradeName, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel11)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jLabel7)
-                                .addGap(41, 41, 41)
-                                .addComponent(endTime, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12)
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(weekDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel10)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel11))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(gradeName, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(6, 6, 6)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel12)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(jLabel8)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(weekDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(33, 33, 33)
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(proName, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(proName, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(UndoBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(OkBtn))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(e_hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(e_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(183, 183, 183)))))
                 .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
@@ -210,8 +248,12 @@ public class InputSemina extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(startTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(endTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(s_hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(e_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(e_hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UndoBtn)
@@ -222,26 +264,84 @@ public class InputSemina extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void UndoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndoBtnActionPerformed
-        // 이전 버튼 -> 관리자 메인화면 이동
-        // if 교수일 때 메인화면 이동
-        // else if 조교일 때 메인화면 이동
+        // 이전 버튼 -> 교수 메인화면 이동
+        ProfessorMain p = new ProfessorMain();
+        p.setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_UndoBtnActionPerformed
 
     private void OkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkBtnActionPerformed
         // 특강 및 세미나 등록 버튼 구현
-        // 날짜 컬럼 값 존재 - 날짜 JComboBox Enabled
-        String grade_num = gradeNum.getText();   //과목번호
-        String grade_name = gradeName.getText();   //과목명
-        String pro_name = proName.getText();      //교수명
-        String class_num = classNum.getSelectedItem().toString();   //호실(int형)
+
+        grade_num = gradeNum.getText();  //과목번호
+        class_name = classNum.getSelectedItem().hashCode(); //호실  
+        pro_name = proName.getText();   //교수명
+        grade_name = gradeName.getText();  //과목명
+        week_day = weekDay.getSelectedItem().toString();  //요일
+        
         //날짜(date)
-        String year1 = year.getSelectedItem().toString();  //년
-        String month1 = month.getSelectedItem().toString();   //월
-        String day1 = day.getSelectedItem().toString();   //일
-        String week_day = weekDay.getSelectedItem().toString();  //요일(int형-1:월, 2:화, 3:수, 4:목, 5:금, 6:토, 7:일)
-        String start_time = startTime.getText();    //시작 시간(time형)
-        String end_time = endTime.getText();    //끝 시간(time형)
+        year1 = year.getSelectedItem().toString();  //년
+        month1 = month.getSelectedItem().toString();   //월
+        day1 = day.getSelectedItem().toString();   //일
+        
+        //시, 분
+        start_hour = s_hour.getSelectedItem().toString();  // 시작 - 시
+        start_min = s_min.getSelectedItem().toString();   // 시작 - 분
+        end_hour = e_hour.getSelectedItem().toString();   // 종료 - 시
+        end_min = e_min.getSelectedItem().toString();    // 종료 - 분
+
+        //날짜 DB 입력
+        String date = year1 + "-" + month1 + "-" + day1;
+        Date d = Date.valueOf(date);  //date로 타입 변환
+
+        //시간 DB 입력
+        String start_time = start_hour + ":" + start_min;
+        String end_time = end_hour + ":" + end_min;
+
+        ConnectDB db = new ConnectDB();   // DB 객체 생성
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = db.getConnection();
+            ps = conn.prepareStatement("insert into schedule values (?,?,?,?,?,?,?,?)");
+
+            ps.setString(1, grade_num);
+            System.out.println("1");
+            ps.setInt(2, class_name);
+            System.out.println("2");
+            ps.setString(3, pro_name);
+            System.out.println("3");
+            ps.setString(4, grade_name);
+            System.out.println("4");
+            ps.setString(5, start_time);  //시작시간
+            ps.setString(6, end_time);  //끝시간
+            System.out.println("5");
+            System.out.println("6");
+            ps.setString(7, week_day);  //요일도 date로 값 받을 수 있음
+            System.out.println("7");
+            ps.setDate(8, d);
+            System.out.println("8");
+
+            if (grade_num.length() == 0 && grade_name.length() == 0 || pro_name.length() == 0) {
+                JOptionPane.showMessageDialog(null, "시간표 정보를 모두 입력해주세요.", "등록 실패", JOptionPane.WARNING_MESSAGE);
+                return;
+            } else {
+                JOptionPane.showMessageDialog(null, "시간표 등록이 완료되었습니다.", "등록 완료", JOptionPane.PLAIN_MESSAGE);
+                dispose(); // 프레임 종료
+                ps.executeUpdate();
+                System.out.println("success");
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_OkBtnActionPerformed
 
     private void dayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayActionPerformed
@@ -289,13 +389,16 @@ public class InputSemina extends javax.swing.JFrame {
     private javax.swing.JButton UndoBtn;
     private javax.swing.JComboBox<String> classNum;
     private javax.swing.JComboBox<String> day;
-    private javax.swing.JTextField endTime;
+    private javax.swing.JComboBox<String> e_hour;
+    private javax.swing.JComboBox<String> e_min;
     private javax.swing.JTextField gradeName;
     private javax.swing.JTextField gradeNum;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -306,7 +409,8 @@ public class InputSemina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox<String> month;
     private javax.swing.JTextField proName;
-    private javax.swing.JTextField startTime;
+    private javax.swing.JComboBox<String> s_hour;
+    private javax.swing.JComboBox<String> s_min;
     private javax.swing.JComboBox<String> weekDay;
     private javax.swing.JComboBox<String> year;
     // End of variables declaration//GEN-END:variables

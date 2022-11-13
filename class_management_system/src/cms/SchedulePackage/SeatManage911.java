@@ -58,6 +58,9 @@ public class SeatManage911 extends javax.swing.JFrame {
     public SeatManage911() {
         initComponents();
         
+        String[] header = {"1","2","3","4","5","6","7","8"};
+        String[][] n = new String[8][5];
+        
         ConnectDB db = new ConnectDB();  // DB 객체 생성
         Connection conn = null;
         PreparedStatement ps = null;

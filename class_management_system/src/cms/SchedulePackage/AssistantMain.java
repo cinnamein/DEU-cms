@@ -1,6 +1,7 @@
 package cms.SchedulePackage;
 
 import cms.UserPackage.LoginPage;
+import cms.WarningPackage.SeatWarning;
 
 /**
  작성자: 정수연
@@ -20,6 +21,7 @@ public class AssistantMain extends javax.swing.JFrame {
         InputTimeTable = new javax.swing.JButton();
         CheckLab = new javax.swing.JButton();
         LogoutBtn = new javax.swing.JButton();
+        seatWarning = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("조교 메인화면");
@@ -48,21 +50,26 @@ public class AssistantMain extends javax.swing.JFrame {
             }
         });
 
+        seatWarning.setText("좌석 경고");
+        seatWarning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seatWarningActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(142, 142, 142)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckLab)
-                    .addComponent(InputTimeTable)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CheckLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(InputTimeTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(seatWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(136, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LogoutBtn)
-                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,16 +80,18 @@ public class AssistantMain extends javax.swing.JFrame {
                 .addComponent(InputTimeTable)
                 .addGap(31, 31, 31)
                 .addComponent(CheckLab)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addComponent(seatWarning)
+                .addGap(30, 30, 30)
                 .addComponent(LogoutBtn)
-                .addGap(42, 42, 42))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
-        // 로그아웃 기능 구현
+        // 로그아웃 버튼 구현
         LoginPage e = new LoginPage();
         e.setVisible(true);
         dispose();
@@ -98,6 +107,13 @@ public class AssistantMain extends javax.swing.JFrame {
     private void InputTimeTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputTimeTableActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InputTimeTableActionPerformed
+
+    private void seatWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatWarningActionPerformed
+        // 좌석 경고 버튼 구현
+        SeatWarning w = new SeatWarning();
+        w.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_seatWarningActionPerformed
 
     public static void main(String args[]) {
         
@@ -132,5 +148,6 @@ public class AssistantMain extends javax.swing.JFrame {
     private javax.swing.JButton InputTimeTable;
     private javax.swing.JButton LogoutBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton seatWarning;
     // End of variables declaration//GEN-END:variables
 }

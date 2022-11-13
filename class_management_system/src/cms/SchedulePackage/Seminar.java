@@ -1,19 +1,20 @@
 package cms.SchedulePackage;
 
-import cms.SchedulePackage.RegisterSchdule;
 import cms.ConnectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import cms.SchedulePackage.RegisterSchedule;
 
 /**
  작성자: 정수연
- 기능: 특강 및 세미나 등록
+ 기능: 특강 및 세미나 등록 기능 구현
  */
-public class Seminar implements RegisterSchdule {
+public class Seminar implements RegisterSchedule {
     @Override
-    public void register(){
+    public void register(){   // 세미나 등록
+        System.out.println("스케쥴-세미나 등록합니다.");
         ConnectDB db = new ConnectDB();  // DB 객체 생성
         Connection conn = null;
         PreparedStatement ps1 = null;
