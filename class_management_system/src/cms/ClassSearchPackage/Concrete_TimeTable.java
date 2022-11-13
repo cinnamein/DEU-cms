@@ -17,8 +17,6 @@ public class Concrete_TimeTable implements Command{
     
     @Override
     public void exectue() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        System.out.println("시간표 조회");
         timeReceiver.timetable();
     }
 }
