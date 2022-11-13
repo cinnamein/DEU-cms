@@ -9,5 +9,6 @@ package cms.ResStudentPackage;
  * @author 이혜리
  */
 public interface ResObserver {
-     void update(String name, String id, int class_num, int seat_num, String r_starttime, String r_endtime, int admin, int approve );
+
+    void update(String name, String id, int class_num, int seat_num, String starttime, String endtime, int admin, int approve);
 }

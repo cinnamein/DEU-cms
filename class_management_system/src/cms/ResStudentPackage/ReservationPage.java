@@ -26,6 +26,15 @@ public class ReservationPage extends javax.swing.JFrame {
 
     LoginPage lg = new LoginPage();
 
+    String name;
+    String id;
+    int class_num;
+    int seat_num;
+    String starttime;
+    String endtime;
+    int admin;
+    int approve;
+
     boolean r_check() {  // 예약 여부 확인
         ConnectDB db = new ConnectDB();
         Connection conn = null;
@@ -429,8 +438,46 @@ public class ReservationPage extends javax.swing.JFrame {
 
     private void reservation_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservation_buttonActionPerformed
         // TODO add your handling code here:
-        ResdbUpdate r = new ResdbUpdate();
-        r.display();
+        LoginPage lg = new LoginPage();
+
+        ConnectDB db = new ConnectDB();
+        Connection conn = null;
+        Statement st = null;
+
+        ResultSet rs = null;
+
+        boolean rcheck = r_check();
+
+        try {
+            conn = db.getConnection();
+            st = conn.createStatement();
+            rs = st.executeQuery("select * from Client");
+
+            ArrayList<String> name_list = new ArrayList<String>();
+            ArrayList<String> id_list = new ArrayList<String>();
+
+            while (rs.next()) {
+                name_list.add(rs.getString("name"));
+                id_list.add(rs.getString("id"));
+            }
+
+            for (int i = 0; i < name_list.size(); i++) {
+                if ((lg.getID().equals(id_list.get(i)))) {
+                    name = name_list.get(i);
+                }
+            }
+
+            conn.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        starttime = start_combobox.getSelectedItem().toString();
+        endtime = end_combobox.getSelectedItem().toString();
+
+        Reservation r = new Reservation();
+        ResdbUpdate res = new ResdbUpdate(r);
+        r.setMeasurements(name, lg.getID(), 911, 5, starttime, endtime, 0, 0);
     }//GEN-LAST:event_reservation_buttonActionPerformed
 
     private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed

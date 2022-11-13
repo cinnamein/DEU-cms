@@ -19,8 +19,9 @@ import javax.swing.JOptionPane;
  *
  * @author 이혜리
  */
-public class ResdbUpdate implements ResObserver{
-      String name;
+public class ResdbUpdate implements ResObserver {
+
+    String name;
     String id;
     int class_num;
     int seat_num;
@@ -28,15 +29,22 @@ public class ResdbUpdate implements ResObserver{
     String endtime;
     int admin;
     int approve;
+    private ResSubject reservation;
+
+    public ResdbUpdate(ResSubject reservation) {
+        this.reservation = reservation;
+        reservation.registerObser(this);
+    }
 
     @Override
-    public void update(String name, String id, int class_num, int seat_num, String r_starttime, String r_endtime, int admin, int approve) {
+    public void update(String name, String id, int class_num, int seat_num, String starttime, String endtime, int admin, int approve) {
+        //hrow new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         this.name = name;
         this.id = id;
         this.class_num = class_num;
         this.seat_num = seat_num;
-        this.starttime = r_starttime;
-        this.endtime = r_endtime;
+        this.starttime = starttime;
+        this.endtime = endtime;
         this.admin = admin;
         this.approve = approve;
 
@@ -45,67 +53,37 @@ public class ResdbUpdate implements ResObserver{
 
     public void display() {
 
-        String name = null;
-        String seat_Num;
-        String starttime;
-        String endtime;
-
-        LoginPage lg = new LoginPage();
-        ReservationPage  r= new ReservationPage();
-
         ConnectDB db = new ConnectDB();
         Connection conn = null;
-        Statement st = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
 
-        boolean rcheck = r.r_check();
-
-        starttime = start_combobox.getSelectedItem().toString();
-        endtime = end_combobox.getSelectedItem().toString();
+        ReservationPage r = new ReservationPage();
+        boolean r_check = r.r_check();
 
         try {
             conn = db.getConnection();
-            st = conn.createStatement();
-            rs = st.executeQuery("select * from Client");
             ps = conn.prepareStatement("insert into Reservation values(?,?,?,?,?,?,?,?)");
 
-            ArrayList<String> name_list = new ArrayList<String>();
-            ArrayList<String> id_list = new ArrayList<String>();
-
-            while (rs.next()) {
-                name_list.add(rs.getString("name"));
-                id_list.add(rs.getString("id"));
-            }
-
-            if (rcheck) {
-
-                for (int i = 0; i < name_list.size(); i++) {
-                    if ((lg.getID().equals(id_list.get(i)))) {
-                        name = name_list.get(i);
-                    }
-                }
-
+            if (r_check) {
                 ps.setString(1, name);  // 이름 String
-                ps.setString(2, lg.getID());    // 아이디 String
-                ps.setInt(3, 911); // 예약할 실습실 번호 int
-                ps.setInt(4, 1); // 좌석 번호 int
+                ps.setString(2, id);    // 아이디 String
+                ps.setInt(3, class_num); // 예약할 실습실 번호 int
+                ps.setInt(4, seat_num); // 좌석 번호 int
                 ps.setString(5, starttime); // 시작시간 date
                 ps.setString(6, endtime); // 끝시간 date
-                ps.setInt(7, 0); // 관리자 여부 int
-                ps.setInt(8, 0); // 승인여부 int
+                ps.setInt(7, admin); // 관리자 여부 int
+                ps.setInt(8, approve); // 승인여부 int
 
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "예약 되었습니다.");
-
             } else {
-                JOptionPane.showMessageDialog(null, "이미 예약이 되었습니다.");
+                JOptionPane.showMessageDialog(null, "이미 예약 되었습니다.");
             }
-
             conn.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
     }
 }
