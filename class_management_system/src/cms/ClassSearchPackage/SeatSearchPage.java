@@ -5,6 +5,8 @@
 package cms.ClassSearchPackage;
 
 import cms.ConnectDB.ConnectDB;
+import cms.ResCanclePackage.Cancle;
+import cms.ResCanclePackage.CancledbUpdate;
 import cms.UserPackage.LoginPage;
 import java.awt.Color;
 import java.sql.Connection;
@@ -25,6 +27,10 @@ public class SeatSearchPage extends javax.swing.JFrame {
     public SeatSearchPage() {
         initComponents();
     }
+
+    LoginPage lg = new LoginPage();
+
+    String id = lg.getID();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,6 +89,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
         s915_button = new javax.swing.JButton();
         s916_button = new javax.swing.JButton();
         s918_button = new javax.swing.JButton();
+        cancle_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -238,6 +245,13 @@ public class SeatSearchPage extends javax.swing.JFrame {
             }
         });
 
+        cancle_button.setText("예약 취소하기");
+        cancle_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancle_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -345,7 +359,10 @@ public class SeatSearchPage extends javax.swing.JFrame {
                                         .addComponent(btn24, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(search_butoon)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(search_butoon)
+                                .addGap(18, 18, 18)
+                                .addComponent(cancle_button))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(68, 68, 68))))
         );
@@ -363,7 +380,9 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(search_butoon)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(search_butoon)
+                            .addComponent(cancle_button))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -461,8 +480,8 @@ public class SeatSearchPage extends javax.swing.JFrame {
             while (rs.next()) {
                 id_list.add(rs.getString("id"));
                 seat_list.add(rs.getString("seat_num"));
-                starttime_list.add(rs.getDate("r_starttime"));
-                endtime_list.add(rs.getDate("r_endtime"));
+                starttime_list.add(rs.getString("r_starttime"));
+                endtime_list.add(rs.getString("r_endtime"));
                 admin_list.add(rs.getInt("admin"));
                 approve_list.add(rs.getString("approve"));
             }
@@ -517,7 +536,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
                 "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
                 "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
-            
+
             JButton b[] = {btn1, btn2, btn3, btn4, btn5,
                 btn6, btn7, btn8, btn9, btn10,
                 btn11, btn12, btn13, btn14, btn15,
@@ -699,6 +718,13 @@ public class SeatSearchPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_s918_buttonActionPerformed
 
+    private void cancle_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancle_buttonActionPerformed
+        // TODO add your handling code here:
+        Cancle c = new Cancle();
+        CancledbUpdate cancle = new CancledbUpdate(c);
+        c.setMeasurements(id);
+    }//GEN-LAST:event_cancle_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -775,6 +801,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
     protected static javax.swing.JButton btn7;
     protected static javax.swing.JButton btn8;
     protected static javax.swing.JButton btn9;
+    private javax.swing.JButton cancle_button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton s911_button;
