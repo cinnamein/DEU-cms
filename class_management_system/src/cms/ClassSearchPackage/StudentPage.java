@@ -5,6 +5,7 @@
 package cms.ClassSearchPackage;
 
 import cms.ConnectDB.ConnectDB;
+import cms.ResStudentPackage.ReservationPage;
 import cms.UserPackage.LoginPage;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -35,6 +36,7 @@ public class StudentPage extends javax.swing.JFrame {
 
         searchClass_button = new javax.swing.JButton();
         searchTime_button = new javax.swing.JButton();
+        re_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +54,13 @@ public class StudentPage extends javax.swing.JFrame {
             }
         });
 
+        re_button.setText("실습실 예약");
+        re_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                re_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,7 +69,8 @@ public class StudentPage extends javax.swing.JFrame {
                 .addGap(136, 136, 136)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(searchClass_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchTime_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(searchTime_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(re_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(167, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,7 +80,9 @@ public class StudentPage extends javax.swing.JFrame {
                 .addComponent(searchClass_button)
                 .addGap(26, 26, 26)
                 .addComponent(searchTime_button)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(re_button)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,6 +149,13 @@ public class StudentPage extends javax.swing.JFrame {
         button4.pressed();
     }//GEN-LAST:event_searchTime_buttonActionPerformed
 
+    private void re_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_re_buttonActionPerformed
+        // TODO add your handling code here:
+
+        ReservationPage re = new ReservationPage();
+        re.setVisible(true);
+    }//GEN-LAST:event_re_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -173,6 +192,7 @@ public class StudentPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton re_button;
     private javax.swing.JButton searchClass_button;
     private javax.swing.JButton searchTime_button;
     // End of variables declaration//GEN-END:variables
