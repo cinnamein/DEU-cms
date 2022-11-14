@@ -20,6 +20,7 @@ public class Reservation implements ResSubject {
     int seat_num;
     String starttime;
     String endtime;
+    String final_day;
     int admin;
     int approve;
 
@@ -38,17 +39,18 @@ public class Reservation implements ResSubject {
     public void notifyObserver() {
         for (int i = 0; i < observers.size(); i++) {
             ResObserver observer = (ResObserver) observers.get(i);
-            observer.update(name, id, class_num, seat_num, starttime, endtime, admin, approve);
+            observer.update(name, id, class_num, seat_num, starttime, endtime, final_day, admin, approve);
         }
     }
 
-    public void setMeasurements(String name, String id, int class_num, int seat_num, String starttime, String endtime, int admin, int approve) {
+    public void setMeasurements(String name, String id, int class_num, int seat_num, String starttime, String endtime, String final_day, int admin, int approve) {
         this.name = name;
         this.id = id;
         this.class_num = class_num;
         this.seat_num = seat_num;
         this.starttime = starttime;
         this.endtime = endtime;
+        this.final_day = final_day;
         this.admin = admin;
         this.approve = approve;
 
@@ -77,6 +79,10 @@ public class Reservation implements ResSubject {
 
     public String getendtime() {
         return endtime;
+    }
+
+    public String getfinal_day() {
+        return final_day;
     }
 
     public int getadmin() {

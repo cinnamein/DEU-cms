@@ -10,5 +10,5 @@ package cms.ResStudentPackage;
  */
 public interface ResObserver {
 
-    void update(String name, String id, int class_num, int seat_num, String starttime, String endtime, int admin, int approve);
+     void update(String name, String id, int class_num, int seat_num, String starttime, String endtime, String final_day, int admin, int approve );
 }

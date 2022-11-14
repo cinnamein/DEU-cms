@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
@@ -40,6 +41,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
     int seat_num;
     String starttime;
     String endtime;
+    String final_day;
     int admin;
     int approve;
 
@@ -120,6 +122,47 @@ public class SeatSearchPage extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+    
+        public void check_date() {  // 날짜, 요일 추출을 위한 메서드
+
+        Calendar c = Calendar.getInstance();
+        int year;
+        int month;
+        int date;
+        int day;
+        String k_date = null;
+
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH) + 1;
+        date = c.get(Calendar.DATE);
+        day = c.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
+            case 1:
+                k_date = "일";
+                break;
+            case 2:
+                k_date = "월";
+                break;
+            case 3:
+                k_date = "화";
+                break;
+            case 4:
+                k_date = "수";
+                break;
+            case 5:
+                k_date = "목";
+                break;
+            case 6:
+                k_date = "금";
+                break;
+            case 7:
+                k_date = "토";
+                break;
+        }
+
+        final_day = k_date;
     }
 
     /**
@@ -1155,6 +1198,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
             for (int i = 0; i < name_list.size(); i++) {
                 if ((lg.getID().equals(id_list.get(i)))) {
                     name = name_list.get(i);
+                    check_date();
                     r_seat();
                 }
             }
@@ -1164,14 +1208,14 @@ public class SeatSearchPage extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-        class_num=Integer.parseInt(class_combobox.getSelectedItem().toString());
+
+        class_num = Integer.parseInt(class_combobox.getSelectedItem().toString());
         starttime = start_combobox.getSelectedItem().toString();
         endtime = end_combobox.getSelectedItem().toString();
 
         Reservation r = new Reservation();
         ResdbUpdate res = new ResdbUpdate(r);
-        r.setMeasurements(name, lg.getID(), class_num, seat_num, starttime, endtime, 0, 0);
+        r.setMeasurements(name, lg.getID(), class_num, seat_num, starttime, endtime, final_day, 0, 0);
     }//GEN-LAST:event_reservation_buttonActionPerformed
 
     private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed

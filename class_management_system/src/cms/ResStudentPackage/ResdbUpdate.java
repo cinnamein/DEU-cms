@@ -26,6 +26,7 @@ public class ResdbUpdate implements ResObserver {
     int seat_num;
     String starttime;
     String endtime;
+    String final_day;
     int admin;
     int approve;
     private ResSubject reservation;
@@ -36,7 +37,7 @@ public class ResdbUpdate implements ResObserver {
     }
 
     @Override
-    public void update(String name, String id, int class_num, int seat_num, String starttime, String endtime, int admin, int approve) {
+    public void update(String name, String id, int class_num, int seat_num, String starttime, String endtime, String final_day, int admin, int approve) {
         //hrow new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         this.name = name;
         this.id = id;
@@ -44,6 +45,7 @@ public class ResdbUpdate implements ResObserver {
         this.seat_num = seat_num;
         this.starttime = starttime;
         this.endtime = endtime;
+        this.final_day = final_day;
         this.admin = admin;
         this.approve = approve;
 
@@ -55,27 +57,27 @@ public class ResdbUpdate implements ResObserver {
         ConnectDB db = new ConnectDB();
         Connection conn = null;
         PreparedStatement ps = null;
-        
+
         SeatSearchPage seat = new SeatSearchPage();
         boolean r_check = seat.r_check();
 
-        
         try {
             conn = db.getConnection();
-            ps = conn.prepareStatement("insert into Reservation values(?,?,?,?,?,?,?,?)");
+            ps = conn.prepareStatement("insert into Reservation values(?,?,?,?,?,?,?,?,?)");
 
-            if(r_check){
-            ps.setString(1, name);  // 이름 String
-            ps.setString(2, id);    // 아이디 String
-            ps.setInt(3, class_num); // 예약할 실습실 번호 int
-            ps.setInt(4, seat_num); // 좌석 번호 int
-            ps.setString(5, starttime); // 시작시간 date
-            ps.setString(6, endtime); // 끝시간 date
-            ps.setInt(7, admin); // 관리자 여부 int
-            ps.setInt(8, approve); // 승인여부 int
+            if (r_check) {
+                ps.setString(1, name);  // 이름 String
+                ps.setString(2, id);    // 아이디 String
+                ps.setInt(3, class_num); // 예약할 실습실 번호 int
+                ps.setInt(4, seat_num); // 좌석 번호 int
+                ps.setString(5, starttime); // 시작시간 date
+                ps.setString(6, endtime); // 끝시간 date
+                ps.setString(7, final_day); // 요일 day
+                ps.setInt(8, admin); // 관리자 여부 int
+                ps.setInt(9, approve); // 승인여부 int
 
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "예약 되었습니다.");
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "예약 되었습니다.");
             } else {
                 JOptionPane.showMessageDialog(null, "이미 예약 되었습니다.");
             }
