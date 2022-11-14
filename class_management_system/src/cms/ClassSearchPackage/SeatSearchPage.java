@@ -109,8 +109,11 @@ public class SeatSearchPage extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "이미 예약된 좌석입니다.");
                         } else {
                             // 날짜 비교
+
                         }
                     }
+                    seat_num = Integer.parseInt(r[i].getText());
+                    System.out.println(seat_num);
                 }
             }
 
@@ -164,22 +167,16 @@ public class SeatSearchPage extends javax.swing.JFrame {
         btn6 = new javax.swing.JButton();
         r38 = new javax.swing.JRadioButton();
         r3 = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
         btn10 = new javax.swing.JButton();
         r16 = new javax.swing.JRadioButton();
-        start_combobox = new javax.swing.JComboBox<>();
         r4 = new javax.swing.JRadioButton();
         r17 = new javax.swing.JRadioButton();
-        end_combobox = new javax.swing.JComboBox<>();
         btn39 = new javax.swing.JButton();
         r18 = new javax.swing.JRadioButton();
-        jLabel2 = new javax.swing.JLabel();
         btn17 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         btn15 = new javax.swing.JButton();
         reservation_button = new javax.swing.JButton();
         btn1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         btn25 = new javax.swing.JButton();
         btn18 = new javax.swing.JButton();
         btn19 = new javax.swing.JButton();
@@ -224,6 +221,14 @@ public class SeatSearchPage extends javax.swing.JFrame {
         btn3 = new javax.swing.JButton();
         btn34 = new javax.swing.JButton();
         btn32 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        start_combobox = new javax.swing.JComboBox<>();
+        end_combobox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        class_combobox = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        date_textfield = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -345,34 +350,19 @@ public class SeatSearchPage extends javax.swing.JFrame {
 
         r3.setText("3");
 
-        jLabel3.setText("날짜");
-
         btn10.setText("10");
 
         r16.setText("16");
-
-        start_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00" }));
-        start_combobox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                start_comboboxActionPerformed(evt);
-            }
-        });
 
         r4.setText("4");
 
         r17.setText("17");
 
-        end_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00" }));
-
         btn39.setText("39");
 
         r18.setText("18");
 
-        jLabel2.setText("시작시간");
-
         btn17.setText("17");
-
-        jLabel4.setText("끝시간");
 
         btn15.setText("15");
 
@@ -384,13 +374,6 @@ public class SeatSearchPage extends javax.swing.JFrame {
         });
 
         btn1.setText("1");
-
-        jButton1.setText("test");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         btn25.setText("25");
         btn25.addActionListener(new java.awt.event.ActionListener() {
@@ -505,6 +488,31 @@ public class SeatSearchPage extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("날짜");
+
+        start_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00" }));
+        start_combobox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                start_comboboxActionPerformed(evt);
+            }
+        });
+
+        end_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00" }));
+
+        jLabel2.setText("시작시간");
+
+        jLabel4.setText("끝시간");
+
+        class_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "915", "916", "918", "911" }));
+
+        jLabel5.setText("예약할 실습실");
+
+        date_textfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                date_textfieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -519,24 +527,33 @@ public class SeatSearchPage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(s915_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(s916_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(s918_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(s911_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(class_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)
                                 .addComponent(jLabel3)
-                                .addGap(166, 166, 166)
+                                .addGap(18, 18, 18)
+                                .addComponent(date_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(506, 506, 506)
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(start_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52)
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(end_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(606, Short.MAX_VALUE))
+                                .addComponent(end_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(s915_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(s916_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(s918_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(s911_button, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(reservation_button)
+                        .addGap(280, 280, 280))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -710,63 +727,66 @@ public class SeatSearchPage extends javax.swing.JFrame {
                                 .addComponent(search_butoon)
                                 .addGap(18, 18, 18)
                                 .addComponent(cancle_button))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1)
-                                .addComponent(reservation_button)))
-                        .addGap(75, 75, 75))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(73, 73, 73))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(end_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(start_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(s916_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(s918_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(s911_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(s915_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(r1)
-                            .addComponent(r2)
-                            .addComponent(r3)
-                            .addComponent(r4)
-                            .addComponent(r5)
-                            .addComponent(r6)
-                            .addComponent(r7)
-                            .addComponent(r8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(end_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(start_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(class_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(date_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(r9)
-                            .addComponent(r10)
-                            .addComponent(r11)
-                            .addComponent(r12)
-                            .addComponent(r13)
-                            .addComponent(r14)
-                            .addComponent(r15)
-                            .addComponent(r16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(s916_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(s918_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(s911_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(s915_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(reservation_button))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(r1)
+                    .addComponent(r2)
+                    .addComponent(r3)
+                    .addComponent(r4)
+                    .addComponent(r5)
+                    .addComponent(r6)
+                    .addComponent(r7)
+                    .addComponent(r8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(r9)
+                    .addComponent(r10)
+                    .addComponent(r11)
+                    .addComponent(r12)
+                    .addComponent(r13)
+                    .addComponent(r14)
+                    .addComponent(r15)
+                    .addComponent(r16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn10, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -841,11 +861,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                             .addComponent(search_butoon)
                             .addComponent(cancle_button))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(reservation_button)
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
         );
 
@@ -887,18 +903,18 @@ public class SeatSearchPage extends javax.swing.JFrame {
 
             for (int k = 0; k < id_list.size(); k++) {
                 // if ((lg.getID().equals(id_list.get(k)))) {
-                    if ((approve_list.get(k).equals("1"))) {
-                        System.out.println("아이디 : " + id_list.get(k));
-                        System.out.println("예약 좌석 번호 : " + seat_list.get(k));
-                        System.out.println("시작 시간 : " + starttime_list.get(k));
-                        System.out.println("끝 시간 : " + endtime_list.get(k));
-                        System.out.println("관리자 여부 : " + admin_list.get(k));
-                    }
+                if ((approve_list.get(k).equals("1"))) {
+                    System.out.println("아이디 : " + id_list.get(k));
+                    System.out.println("예약 좌석 번호 : " + seat_list.get(k));
+                    System.out.println("시작 시간 : " + starttime_list.get(k));
+                    System.out.println("끝 시간 : " + endtime_list.get(k));
+                    System.out.println("관리자 여부 : " + admin_list.get(k));
                 }
-                conn.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
             }
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_search_butoonActionPerformed
 
     private void text1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_text1AncestorAdded
@@ -948,7 +964,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 for (int j = 0; j < btn.length; j++) {
                     if (btn[j].equals(seat_list.get(i))) {
                         System.out.println(btn[j]);
-                        b[j].setBackground(Color.yellow);
+                        b[j].setBackground(Color.gray);
                     }
                 }
             }
@@ -997,7 +1013,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 for (int j = 0; j < btn.length; j++) {
                     if (btn[j].equals(seat_list.get(i))) {
                         System.out.println(btn[j]);
-                        b[j].setBackground(Color.yellow);
+                        b[j].setBackground(Color.gray);
                     }
                 }
             }
@@ -1046,7 +1062,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 for (int j = 0; j < btn.length; j++) {
                     if (btn[j].equals(seat_list.get(i))) {
                         System.out.println(btn[j]);
-                        b[j].setBackground(Color.yellow);
+                        b[j].setBackground(Color.gray);
                     }
                 }
             }
@@ -1095,7 +1111,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 for (int j = 0; j < btn.length; j++) {
                     if (btn[j].equals(seat_list.get(i))) {
                         System.out.println(btn[j]);
-                        b[j].setBackground(Color.yellow);
+                        b[j].setBackground(Color.gray);
                     }
                 }
             }
@@ -1113,10 +1129,6 @@ public class SeatSearchPage extends javax.swing.JFrame {
         c.setMeasurements(lg.getID());
     }//GEN-LAST:event_cancle_buttonActionPerformed
 
-    private void start_comboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_comboboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_start_comboboxActionPerformed
-
     private void reservation_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservation_buttonActionPerformed
         // TODO add your handling code here:
 
@@ -1125,10 +1137,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
         ConnectDB db = new ConnectDB();
         Connection conn = null;
         Statement st = null;
-
         ResultSet rs = null;
-
-        boolean rcheck = r_check();
 
         try {
             conn = db.getConnection();
@@ -1146,6 +1155,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
             for (int i = 0; i < name_list.size(); i++) {
                 if ((lg.getID().equals(id_list.get(i)))) {
                     name = name_list.get(i);
+                    r_seat();
                 }
             }
 
@@ -1154,18 +1164,15 @@ public class SeatSearchPage extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
+        class_num=Integer.parseInt(class_combobox.getSelectedItem().toString());
         starttime = start_combobox.getSelectedItem().toString();
         endtime = end_combobox.getSelectedItem().toString();
 
         Reservation r = new Reservation();
         ResdbUpdate res = new ResdbUpdate(r);
-        r.setMeasurements(name, lg.getID(), 911, 5, starttime, endtime, 0, 0);
+        r.setMeasurements(name, lg.getID(), class_num, seat_num, starttime, endtime, 0, 0);
     }//GEN-LAST:event_reservation_buttonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        r_seat();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed
         // TODO add your handling code here:
@@ -1186,6 +1193,14 @@ public class SeatSearchPage extends javax.swing.JFrame {
     private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn32ActionPerformed
+
+    private void start_comboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_comboboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_start_comboboxActionPerformed
+
+    private void date_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date_textfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_date_textfieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1264,12 +1279,14 @@ public class SeatSearchPage extends javax.swing.JFrame {
     protected static javax.swing.JButton btn8;
     protected static javax.swing.JButton btn9;
     private javax.swing.JButton cancle_button;
+    private javax.swing.JComboBox<String> class_combobox;
+    private javax.swing.JTextField date_textfield;
     protected static javax.swing.JComboBox<String> end_combobox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton r1;
     private javax.swing.JRadioButton r10;
