@@ -5,7 +5,6 @@
 package cms.ClassSearchPackage;
 
 import cms.ConnectDB.ConnectDB;
-import cms.ResStudentPackage.ReservationPage;
 import cms.UserPackage.LoginPage;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -111,7 +110,7 @@ public class StudentPage extends javax.swing.JFrame {
     private void re_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_re_buttonActionPerformed
         // TODO add your handling code here:
 
-        ReservationPage re = new ReservationPage();
+        SeatSearchPage re = new SeatSearchPage();
         re.setVisible(true);
     }//GEN-LAST:event_re_buttonActionPerformed
 
