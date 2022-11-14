@@ -5,6 +5,6 @@ package cms.WarningPackage;
  * 기능: 좌석 경고 인터페이스
  */
 public interface WarnSubject {
-    private void registerObserver(){};
-    private void notifyObserver(){};
+    void registerObserver(WarnObserver observer);
+    void notifyObserver();
 }

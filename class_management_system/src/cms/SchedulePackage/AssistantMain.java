@@ -1,7 +1,7 @@
 package cms.SchedulePackage;
 
 import cms.UserPackage.LoginPage;
-import cms.WarningPackage.SeatWarning;
+//import cms.WarningPackage.SeatWarning;
 
 /**
  작성자: 정수연
@@ -110,9 +110,9 @@ public class AssistantMain extends javax.swing.JFrame {
 
     private void seatWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatWarningActionPerformed
         // 좌석 경고 버튼 구현
-        SeatWarning w = new SeatWarning();
+        /*SeatWarning w = new SeatWarning();
         w.setVisible(true);
-        dispose();
+        dispose();*/
     }//GEN-LAST:event_seatWarningActionPerformed
 
     public static void main(String args[]) {

@@ -112,30 +112,30 @@ public class CheckLab extends javax.swing.JFrame {
 
     private void Seat911ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat911ActionPerformed
         // 911호로 이동
-        SeatManage911 s911 = new SeatManage911();
+        /*SeatManage911 s911 = new SeatManage911();
         s911.setVisible(true);
-        dispose();
+        dispose();*/
     }//GEN-LAST:event_Seat911ActionPerformed
 
     private void Seat915ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat915ActionPerformed
         // 915호로 이동
-        SeatManage915 s915 = new SeatManage915();
+        /*SeatManage915 s915 = new SeatManage915();
         s915.setVisible(true);
-        dispose();
+        dispose();*/
     }//GEN-LAST:event_Seat915ActionPerformed
 
     private void Seat916ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat916ActionPerformed
         // 916호로 이동
-        SeatManage916 s916 = new SeatManage916();
+        /*SeatManage916 s916 = new SeatManage916();
         s916.setVisible(true);
-        dispose();
+        dispose();*/
     }//GEN-LAST:event_Seat916ActionPerformed
 
     private void Seat918ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat918ActionPerformed
         // 918호로 이동
-        SeatManage918 s918 = new SeatManage918();
+        /*SeatManage918 s918 = new SeatManage918();
         s918.setVisible(true);
-        dispose();
+        dispose();*/
     }//GEN-LAST:event_Seat918ActionPerformed
 
     public static void main(String args[]) {

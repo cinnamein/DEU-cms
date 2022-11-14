@@ -2,13 +2,8 @@ package cms.WarningPackage;
 
 /**
  * 작성자: 정수연
- * 기능: 좌석 경고 옵저버(주제)
+ * 기능: 좌석 경고 이벤트 관찰 클래스(주제)
  */
-public class WarnObserver {
-    public int id;  // ID
-    public int warning;  // 경고 횟수
-    
-    public void update(){
-    }
-    
+public interface WarnObserver {
+    void update(String name, String id, int class_num, int seat_num, String starttime, String endtime, int admin, int approve, String warning);
 }
