@@ -14,8 +14,10 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
@@ -163,6 +165,26 @@ public class SeatSearchPage extends javax.swing.JFrame {
         }
 
         final_day = k_date;
+    }
+
+    public boolean timecheck() {   // 16시 30분 이전에 예약하는지 확인
+        Date d1 = null;
+        Date d2 = null;
+        try {
+            Date currentTime = new Date();
+            SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat f = new SimpleDateFormat("HH:mm:ss");
+
+            d1 = f.parse("16:30:00");
+            d2 = f.parse(SimpleDateFormat.format(currentTime));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        if (d1.compareTo(d2) >= 0) {
+            System.out.println("16시 30분 이전");
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -945,7 +967,6 @@ public class SeatSearchPage extends javax.swing.JFrame {
             }
 
             for (int k = 0; k < id_list.size(); k++) {
-                // if ((lg.getID().equals(id_list.get(k)))) {
                 if ((approve_list.get(k).equals("1"))) {
                     System.out.println("아이디 : " + id_list.get(k));
                     System.out.println("예약 좌석 번호 : " + seat_list.get(k));
