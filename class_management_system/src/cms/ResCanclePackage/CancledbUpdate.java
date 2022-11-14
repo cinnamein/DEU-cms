@@ -5,8 +5,12 @@
 package cms.ResCanclePackage;
 
 import cms.ConnectDB.ConnectDB;
+import cms.UserPackage.LoginPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,15 +40,30 @@ public class CancledbUpdate implements CancleObserver {
 
         ConnectDB db = new ConnectDB();
         Connection conn = null;
+        Statement st = null;
         PreparedStatement ps = null;
+        ResultSet rs = null;
 
         try {
             conn = db.getConnection();
+            st = conn.createStatement();
 
-            ps = conn.prepareStatement("delete from Reservation where id='" + id + "'");
+            rs = st.executeQuery("select approve from Reservation where id='" + id + "'");
 
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "실습실 예약 취소 되었습니다.");
+            ArrayList<String> a_list = new ArrayList<String>();
+
+            while (rs.next()) {
+                a_list.add(rs.getString("approve"));
+            }
+            for (int i = 0; i < a_list.size(); i++) {
+                System.out.println("A");
+                if ((a_list.get(i)).equals("1")) {
+                    ps = conn.prepareStatement("delete from Reservation where id='" + id + "'");
+                    ps.executeUpdate();
+
+                    JOptionPane.showMessageDialog(null, "실습실 예약 취소 되었습니다.");
+                }
+            }
 
             conn.close();
         } catch (Exception ex) {

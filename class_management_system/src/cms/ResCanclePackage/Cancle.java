@@ -10,8 +10,9 @@ import java.util.ArrayList;
  *
  * @author 이혜리
  */
-public class Cancle implements CancleSubject{
-        private ArrayList observers;
+public class Cancle implements CancleSubject {
+
+    private ArrayList observers;
 
     String id;
 
@@ -35,14 +36,14 @@ public class Cancle implements CancleSubject{
             observer.update(id);
         }
     }
-    
-     public void setMeasurements(String id) {
+
+    public void setMeasurements(String id) {
         this.id = id;
 
         notifyObserver();
     }
-     
-     public String getid(){
-         return id;
-     }
+
+    public String getid() {
+        return id;
+    }
 }

@@ -487,7 +487,6 @@ public class SeatSearchPage extends javax.swing.JFrame {
             }
 
             for (int k = 0; k < id_list.size(); k++) {
-                // if ((lg.getID().equals(id_list.get(k)))) {
                 if ((approve_list.get(k).equals("1"))) {
                     System.out.println("아이디 : " + id_list.get(k));
                     System.out.println("예약 좌석 번호 : " + seat_list.get(k));
@@ -495,7 +494,6 @@ public class SeatSearchPage extends javax.swing.JFrame {
                     System.out.println("끝 시간 : " + endtime_list.get(k));
                     System.out.println("관리자 여부 : " + admin_list.get(k));
                 }
-                // }
             }
             conn.close();
         } catch (Exception ex) {
@@ -550,7 +548,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 for (int j = 0; j < btn.length; j++) {
                     if (btn[j].equals(seat_list.get(i))) {
                         System.out.println(btn[j]);
-                        b[j].setBackground(Color.yellow);
+                        b[j].setBackground(Color.gray);
                     }
                 }
             }
@@ -585,17 +583,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
                 "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
                 "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
-
-            /*
-            JButton b[] = {btn1, S_SeatSearchPage.btn2, S_SeatSearchPage.btn3, S_SeatSearchPage.btn4, S_SeatSearchPage.btn5,
-                SeatSearchPage.btn6, SeatSearchPage.btn7, S_SeatSearchPage.btn8, S_SeatSearchPage.btn9, S_SeatSearchPage.btn10,
-                SeatSearchPage.btn11, SeatSearchPage.btn12, S_SeatSearchPage.btn13, S_SeatSearchPage.btn14, S_SeatSearchPage.btn15,
-                SeatSearchPage.btn16, SeatSearchPage.btn17, S_SeatSearchPage.btn18, S_SeatSearchPage.btn19, S_SeatSearchPage.btn20,
-                SeatSearchPage.btn21, SeatSearchPage.btn22, S_SeatSearchPage.btn23, S_SeatSearchPage.btn24, S_SeatSearchPage.btn25,
-                SeatSearchPage.btn26, SeatSearchPage.btn27, S_SeatSearchPage.btn28, S_SeatSearchPage.btn27, S_SeatSearchPage.btn28,
-                SeatSearchPage.btn29, SeatSearchPage.btn30, S_SeatSearchPage.btn31, S_SeatSearchPage.btn32, S_SeatSearchPage.btn35,
-                SeatSearchPage.btn36, SeatSearchPage.btn37, S_SeatSearchPage.btn38, S_SeatSearchPage.btn39, S_SeatSearchPage.btn40};
-             */
+            
             JButton b[] = {btn1, btn2, btn3, btn4, btn5,
                 btn6, btn7, btn8, btn9, btn10,
                 btn11, btn12, btn13, btn14, btn15,
@@ -609,7 +597,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 for (int j = 0; j < btn.length; j++) {
                     if (btn[j].equals(seat_list.get(i))) {
                         System.out.println(btn[j]);
-                        b[j].setBackground(Color.yellow);
+                        b[j].setBackground(Color.gray);
                     }
                 }
             }
@@ -658,7 +646,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 for (int j = 0; j < btn.length; j++) {
                     if (btn[j].equals(seat_list.get(i))) {
                         System.out.println(btn[j]);
-                        b[j].setBackground(Color.yellow);
+                        b[j].setBackground(Color.gray);
                     }
                 }
             }
@@ -707,7 +695,7 @@ public class SeatSearchPage extends javax.swing.JFrame {
                 for (int j = 0; j < btn.length; j++) {
                     if (btn[j].equals(seat_list.get(i))) {
                         System.out.println(btn[j]);
-                        b[j].setBackground(Color.yellow);
+                        b[j].setBackground(Color.gray);
                     }
                 }
             }
