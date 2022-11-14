@@ -123,8 +123,8 @@ public class SeatSearchPage extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
-    
-        public void check_date() {  // 날짜, 요일 추출을 위한 메서드
+
+    public void check_date() {  // 날짜, 요일 추출을 위한 메서드
 
         Calendar c = Calendar.getInstance();
         int year;
