@@ -83,14 +83,14 @@ public class ResdbUpdate implements ResObserver {
                 } else {
                     JOptionPane.showMessageDialog(null, "이미 예약 되었습니다.");
                 }
-                }else {
+            } else {
                 JOptionPane.showMessageDialog(null, "예약 시간이 지났습니다.");
             }
-                conn.close();
+            conn.close();
 
-            }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        }
     }
+}
