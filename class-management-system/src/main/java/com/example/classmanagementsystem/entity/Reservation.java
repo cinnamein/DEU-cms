@@ -17,6 +17,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 예약 번호
 
+    private Long classroomId; // 강의실 id
+
     private Integer seat; // 예약 좌석
 
     private Long reserver; // 예약자 id
