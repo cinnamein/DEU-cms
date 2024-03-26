@@ -1,13 +1,13 @@
 package com.example.classmanagementsystem.repository;
 
 import com.example.classmanagementsystem.entity.Reservation;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, Long> {
+public interface ReservationRepository extends ReactiveCrudRepository<Reservation, Long> {
     @Query("SELECT COUNT(r) FROM Reservation AS r " +
             "WHERE r.classroomId = :classroomId " +
             "AND r.seat = :seat " +
