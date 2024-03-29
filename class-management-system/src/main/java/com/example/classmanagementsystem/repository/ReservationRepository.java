@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 
 @Repository
 public interface ReservationRepository extends ReactiveCrudRepository<Reservation, Long> {
@@ -17,4 +18,8 @@ public interface ReservationRepository extends ReactiveCrudRepository<Reservatio
                                          @Param("seat") Integer seat,
                                          @Param("startTime") Integer startTime,
                                          @Param("endTime") Integer endTime);
+
+    boolean existsByReserver(Long reserver);
+
+    Flux<Reservation> findAllByReserver(Long reserver);
 }
