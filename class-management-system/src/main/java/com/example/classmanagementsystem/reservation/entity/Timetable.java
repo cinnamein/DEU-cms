@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="timetable")
+@Table(name = "timetable")
 public class Timetable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
