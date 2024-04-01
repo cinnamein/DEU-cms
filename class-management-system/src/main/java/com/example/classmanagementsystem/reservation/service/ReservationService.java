@@ -1,9 +1,9 @@
-package com.example.classmanagementsystem.service;
+package com.example.classmanagementsystem.reservation.service;
 
-import com.example.classmanagementsystem.dto.CancelReservationRequestDto;
-import com.example.classmanagementsystem.dto.CreateReservationRequestDto;
-import com.example.classmanagementsystem.entity.Reservation;
-import com.example.classmanagementsystem.repository.ReservationRepository;
+import com.example.classmanagementsystem.reservation.dto.CancelReservationRequestDto;
+import com.example.classmanagementsystem.reservation.dto.CreateReservationRequestDto;
+import com.example.classmanagementsystem.reservation.entity.Reservation;
+import com.example.classmanagementsystem.reservation.repository.ReservationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

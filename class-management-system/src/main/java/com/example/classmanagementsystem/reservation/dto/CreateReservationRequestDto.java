@@ -1,4 +1,4 @@
-package com.example.classmanagementsystem.dto;
+package com.example.classmanagementsystem.reservation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

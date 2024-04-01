@@ -1,6 +1,6 @@
-package com.example.classmanagementsystem.repository;
+package com.example.classmanagementsystem.reservation.repository;
 
-import com.example.classmanagementsystem.entity.Reservation;
+import com.example.classmanagementsystem.reservation.entity.Reservation;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
@@ -19,7 +19,6 @@ public interface ReservationRepository extends ReactiveCrudRepository<Reservatio
                                          @Param("startTime") Integer startTime,
                                          @Param("endTime") Integer endTime);
 
-    boolean existsByReserver(Long reserver);
 
     Flux<Reservation> findAllByReserver(Long reserver);
 }

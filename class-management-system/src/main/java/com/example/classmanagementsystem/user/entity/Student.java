@@ -1,4 +1,4 @@
-package com.example.classmanagementsystem.entity;
+package com.example.classmanagementsystem.user.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,11 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="lecture")
-public class Lecture {
+@Table(name="student")
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 강의 id
+    private Long id; // 학생 id
 
-    private String lectureNum; // 강의명
+    private String name; // 학생 이름
+
+    private Integer studentId; // 학번
+
+    private Integer grade; // 학년
 }

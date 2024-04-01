@@ -1,4 +1,4 @@
-package com.example.classmanagementsystem.entity;
+package com.example.classmanagementsystem.reservation.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

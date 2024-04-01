@@ -1,4 +1,4 @@
-package com.example.classmanagementsystem.dto;
+package com.example.classmanagementsystem.reservation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CheckReservationRequestDto {
-    private Long reserverId;
+public class CreateLectureResponseDto {
+    private Long TimetableId; // 시간표 id
 }

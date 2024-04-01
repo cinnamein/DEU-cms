@@ -1,6 +1,5 @@
-package com.example.classmanagementsystem.entity;
+package com.example.classmanagementsystem.reservation.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,14 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name="timetable")
-public class Timetable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 시간표 id
-
-    private String lectureId; // 강의 id
+public class CreateLectureRequestDto {
+    private Long lectureNum; // 강의 id
 
     private Integer lectureStartTime; // 강의 시작 시간
 
