@@ -6,10 +6,5 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ExceptionCode {
-    IMPOSSIBLE_RESERVATION(400, "cannot reserve seat");
-
-    private int status;
-
-    private String message;
-}
+public record ExceptionCode (Long status,
+                             String message)
