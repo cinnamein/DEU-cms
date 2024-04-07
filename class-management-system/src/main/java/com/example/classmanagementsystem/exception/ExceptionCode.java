@@ -7,4 +7,4 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public record ExceptionCode (Long status,
-                             String message)
+                             String message){}
