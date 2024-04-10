@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional
 @AllArgsConstructor
-public class MailService {
-    private final JavaMailSender eMailSender;
+public class EmailService {
+    private final JavaMailSender emailSender;
 
     public void sendEmail(String email, String title, String content) {
         SimpleMailMessage emailForm = createEmailForm(email, title, content);
         try {
-            eMailSender.send(emailForm);
+            emailSender.send(emailForm);
         } catch (RuntimeException e) {
             log.debug("MailService.sendEmail exception occur toEmail: {}, " +
                     "title: {}, text: {}", email, title, content);
