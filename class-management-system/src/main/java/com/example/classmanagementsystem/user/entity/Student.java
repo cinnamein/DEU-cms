@@ -21,5 +21,7 @@ public class Student {
 
     private Integer studentId; // 학번
 
+    private String email; // 이메일
+
     private Integer grade; // 학년
 }
