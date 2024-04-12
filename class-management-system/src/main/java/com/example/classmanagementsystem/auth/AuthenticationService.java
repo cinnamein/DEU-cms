@@ -6,9 +6,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 import java.security.SecureRandom;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -17,9 +17,9 @@ public class AuthenticationService {
 
     private final JavaMailSender emailSender;
 
-    private final UserRepository userRepository;
-
     private final RedisService redisService;
+
+    private final UserRepository userRepository;
 
     /**
      * 생성된 인증 메일을 전송
@@ -91,11 +91,15 @@ public class AuthenticationService {
      * @param email
      */
     private void checkDuplicatedEmail(String email) {
-        Optional<Student> student = userRepository.findByEmail(email);
-        if (student.isPresent()) {
-            throw new RuntimeException();
-        }
+        Mono<Student> student = userRepository.findByEmail(email);
+        student.flatMap(student1 -> {
+            if (student1.getEmail().equals(email)){
+                throw new RuntimeException("잘못된 이메일");
+            }
+        });
     }
+
+
 
     /**
      * 인증 번호가 맞는지 확인
