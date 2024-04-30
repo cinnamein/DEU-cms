@@ -1,5 +1,6 @@
-package com.example.classmanagementsystem.auth;
+package com.example.classmanagementsystem.auth.controller;
 
+import com.example.classmanagementsystem.auth.service.AuthenticationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +18,13 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestParam("email") String email) {
-        authenticationService.sendCodeToEmail(email);
+    public ResponseEntity register(@RequestParam("email") String receiver) {
+        authenticationService.sendEmail(receiver);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/register/verification")
-    public ResponseEntity verifyEmail(@RequestParam("email") String email, @RequestParam("code") String authCode) {
+    public ResponseEntity verifyEmail(@RequestParam("email") String receiver, @RequestParam("code") String userCode) {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
