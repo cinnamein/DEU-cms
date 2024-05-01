@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+@Table("reservation")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("reservation")
 public class Reservation {
     @Id
     private Long id; // 예약 번호

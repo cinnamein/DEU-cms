@@ -1,20 +1,19 @@
 package com.example.classmanagementsystem.reservation.entity;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table(name = "timetable")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "timetable")
 public class Timetable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 시간표 id
 
     private String lectureId; // 강의 id
