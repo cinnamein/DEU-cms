@@ -15,7 +15,21 @@ public class ReservationService {
 
     private final ReservationRepository reservationRepository;
 
-    // 예약
+    /**
+     * 예약 내역 확인
+     * @return
+     */
+    public Flux<Reservation> checkReservation() {
+        // TODO
+        return reservationRepository.findAllByReserver(1L)
+                .switchIfEmpty(Flux.error(new RuntimeException("예약 내역이 존재하지 않습니다.")));
+    }
+
+    /**
+     * 예약 메서드
+     * @param request
+     * @return
+     */
     private Mono<CreateReservationRequestDto> createReservation(CreateReservationRequestDto request) {
 
         return Mono.defer(() -> {
@@ -34,19 +48,21 @@ public class ReservationService {
         });
     }
 
-    // 예약 내역 확인
-    public Flux<Reservation> checkReservation() {
-        // TODO
-        return reservationRepository.findAllByReserver(1L)
-                .switchIfEmpty(Flux.error(new RuntimeException("예약 내역이 존재하지 않습니다.")));
-    }
-
-    // 예약 취소
+    /**
+     * 예약 취소
+     * @param request
+     * @return
+     */
     public Mono<Void> cancelReservation(CancelReservationRequestDto request) {
         return reservationRepository.deleteById(request.getReservationId());
     }
 
-    public boolean checkValidReservation(CreateReservationRequestDto request) {
+    /**
+     * 예약 가능 여부 확인
+     * @param request
+     * @return
+     */
+    private boolean checkValidReservation(CreateReservationRequestDto request) {
         // 예약 가능 여부 확인
         return !reservationRepository
                 .countOverlappingReservations(request.getClassroom(),
