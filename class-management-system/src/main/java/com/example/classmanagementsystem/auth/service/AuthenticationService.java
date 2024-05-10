@@ -6,9 +6,12 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
 import java.security.SecureRandom;
 import java.util.Random;
+import java.util.function.Function;
 
 @Service
 @AllArgsConstructor
@@ -20,31 +23,32 @@ public class AuthenticationService {
 
     /**
      * 인증번호 메일 송신 메서드
+     *
      * @param receiver
      */
-    public void sendEmail(String receiver) {
-        if (checkDuplicateEmail(receiver)) {
-            throw new RuntimeException();
-        }
-        SimpleMailMessage message = createEmail(receiver);
-        try {
-            emailSender.send(message);
-        } catch (Exception e) {
-            throw new RuntimeException();
-        }
+    public Mono<ServerResponse> sendEmail(long studentId, String receiver) {
+        return checkDuplicateStudentId(studentId)
+                .flatMap(result -> {
+                    SimpleMailMessage message = createEmail(receiver);
+                    return Mono.fromRunnable(() -> emailSender.send(message))
+                            .then(ServerResponse.ok().bodyValue("이메일 전송 성공"))
+                            .onErrorResume(Mono::error);
+                });
     }
 
     /**
      * 이메일 가입 여부 판단 메서드
+     *
      * @param receiver
      * @param userCode
      */
-    public void compareVerificationCode(String receiver, String userCode) {
-        String redisCode = getRedisCode(receiver);
-        if (!userCode.equals(redisCode)) {
-            throw new RuntimeException();
-        }
-        saveRedisCode(receiver, redisCode);
+    public Mono<ServerResponse> compareVerificationCode(String receiver, String userCode) {
+        return Mono.just(getRedisCode(receiver))
+                .flatMap(redisCode -> {
+                    return Mono.fromRunnable(() -> saveRedisCode(receiver, redisCode))
+                            .then(ServerResponse.ok().bodyValue("가입되지 않은 이메일"))
+                            .onErrorResume(Mono::error);
+                });
     }
 
     private SimpleMailMessage createEmail(String receiver) {
@@ -78,7 +82,7 @@ public class AuthenticationService {
         return redisTemplate.opsForValue().get(receiver);
     }
 
-    private boolean checkDuplicateEmail(String receiver) {
-        return userRepository.existsByEmail(receiver);
+    private Mono<Boolean> checkDuplicateStudentId(long studentId) {
+        return userRepository.existsByStudentId(studentId);
     }
 }
