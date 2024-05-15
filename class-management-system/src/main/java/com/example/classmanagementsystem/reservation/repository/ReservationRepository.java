@@ -1,6 +1,6 @@
 package com.example.classmanagementsystem.reservation.repository;
 
-import com.example.classmanagementsystem.reservation.entity.Reservation;
+import com.example.classmanagementsystem.reservation.model.Reservation;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;

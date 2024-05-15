@@ -1,8 +1,8 @@
 package com.example.classmanagementsystem.reservation.service;
 
-import com.example.classmanagementsystem.reservation.dto.CancelReservationRequestDto;
-import com.example.classmanagementsystem.reservation.dto.CreateReservationRequestDto;
-import com.example.classmanagementsystem.reservation.entity.Reservation;
+import com.example.classmanagementsystem.reservation.model.CancelReservationRequestDto;
+import com.example.classmanagementsystem.reservation.model.CreateReservationRequestDto;
+import com.example.classmanagementsystem.reservation.model.Reservation;
 import com.example.classmanagementsystem.reservation.repository.ReservationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +17,7 @@ public class ReservationService {
 
     /**
      * 예약 내역 확인
+     *
      * @return
      */
     public Flux<Reservation> checkReservation() {
@@ -27,6 +28,7 @@ public class ReservationService {
 
     /**
      * 예약 메서드
+     *
      * @param request
      * @return
      */
@@ -50,6 +52,7 @@ public class ReservationService {
 
     /**
      * 예약 취소
+     *
      * @param request
      * @return
      */
@@ -59,6 +62,7 @@ public class ReservationService {
 
     /**
      * 예약 가능 여부 확인
+     *
      * @param request
      * @return
      */

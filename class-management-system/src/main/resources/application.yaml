@@ -15,7 +15,16 @@ spring:
           timeout: 5000
           writetimeout: 5000
     auth-code-expiration-millis: 3600000 # 1??
+
+  r2dbc:
+    url: r2dbc:oracle://localhost:1521/ORCL
+    username: username
+    password: password
+
   redis:
     database:
       port: 6379
       host: localhost
+
+server:
+  port: 8080

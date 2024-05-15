@@ -13,12 +13,12 @@ public class RedisService {
 
     /**
      * 인증번호 삭제
+     *
      * @param user
      */
     public void deleteKey(String user) {
         redisTemplate.delete(user);
     }
-
     private void expireCode(String user) {
         redisTemplate.expire(user, 1, TimeUnit.HOURS);
     }
